@@ -57,13 +57,11 @@ const coverImage = post.cover || (() => {
   <!-- Content -->
   <div class={`flex flex-col flex-1 ${isFeatured ? 'p-6 md:p-8 lg:p-10' : 'p-5'}`}>
     <div class="flex items-center gap-3 text-xs text-[var(--color-text-subtle)] mb-3 tracking-wide shrink-0">
-      <time datetime={post.publishedAt.toISOString()} class="font-medium">{formatDate(post.publishedAt)}</time>
+      <time datetime={post.publishedAt.toISOString()} class="font-medium leading-none">{formatDate(post.publishedAt)}</time>
       {post.category && (
         <>
           <span class="w-1 h-1 rounded-full bg-[var(--color-text-subtle)] opacity-60"></span>
-          <a href={`/categories/${post.category.slug}`} class="hover:text-[var(--color-primary-hover)] transition-colors duration-200 truncate max-w-[100px]">
-            {post.category.name}
-          </a>
+          <a href={`/categories/${post.category.slug}`} class="hover:text-[var(--color-primary-hover)] transition-colors duration-200 truncate max-w-[100px] leading-none flex items-center">{post.category.name}</a>
         </>
       )}
     </div>
