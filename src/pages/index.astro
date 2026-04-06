@@ -15,7 +15,7 @@ const published = filterPublished(posts);
 const sorted = sortPosts(published);
 
 // 分页逻辑
-const postsPerPage = 6;
+const postsPerPage = 9;
 const currentPage = 1;
 const totalPages = Math.ceil(sorted.length / postsPerPage);
 const displayPosts = sorted.slice(0, postsPerPage);
