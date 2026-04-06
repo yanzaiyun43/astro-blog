@@ -1,10 +1,10 @@
 ---
 title: "极简主义设计的艺术"
 description: "探索如何通过减法创造更有力量的设计，以及极简主义在现代数字产品中的应用。"
-publishedAt: 2024-01-15
+publishedAt: 2026-01-15
 category: "设计思考"
 tags: ["极简主义", "设计", "UI/UX"]
-featured: true
+featured: false
 ---
 
 ## 什么是极简主义

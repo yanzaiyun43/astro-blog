@@ -48,16 +48,35 @@ npm run build
 
 ```markdown
 ---
-title: "文章标题"
-description: "文章简介"
-publishedAt: 2026-01-01
-category: "分类"
-tags: ["标签1", "标签2"]
-featured: true  # 是否置顶
+title: "文章标题"              # 必需：文章标题（最多100字符）
+description: "文章简介"        # 必需：文章描述（最多200字符）
+publishedAt: 2026-01-01      # 必需：发布日期
+updatedAt: 2026-01-20        # 可选：更新日期
+cover: ../../assets/cover.jpg # 可选：封面图片路径
+category: "分类"              # 可选：分类（默认"未分类"）
+tags: ["标签1", "标签2"]      # 可选：标签列表
+draft: false                 # 可选：草稿模式（默认false）
+featured: true               # 可选：置顶文章（默认false）
+slug: "custom-url"           # 可选：自定义URL路径
 ---
 
 正文内容...
 ```
+
+### 字段说明
+
+| 字段 | 必需 | 类型 | 说明 |
+|------|------|------|------|
+| `title` | ✅ | string | 文章标题，最多100字符 |
+| `description` | ✅ | string | 文章描述，最多200字符 |
+| `publishedAt` | ✅ | date | 发布日期，格式：YYYY-MM-DD |
+| `updatedAt` | - | date | 更新日期，格式：YYYY-MM-DD |
+| `cover` | - | string | 封面图片路径，如：`../../assets/image.jpg` |
+| `category` | - | string | 文章分类，默认"未分类" |
+| `tags` | - | array | 标签列表，如：`["标签1", "标签2"]` |
+| `draft` | - | boolean | 草稿模式，设为true则不发布 |
+| `featured` | - | boolean | 置顶文章，设为true则在首页突出显示 |
+| `slug` | - | string | 自定义URL路径，如：`my-post` |
 
 ## 🛠️ 技术栈
 

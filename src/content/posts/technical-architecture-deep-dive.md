@@ -1,10 +1,10 @@
 ---
 title: "旧识桥技术架构解析"
 description: "深入剖析旧识桥博客的技术实现细节，包括 Astro 的岛屿架构、内容集合管理、主题系统实现以及性能优化策略。"
-publishedAt: 2024-01-07
+publishedAt: 2026-01-07
 category: "技术分享"
 tags: ["Astro", "架构设计", "性能优化", "旧识桥"]
-featured: true
+featured: false
 ---
 
 ## 架构概览

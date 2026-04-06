@@ -15,18 +15,11 @@ interface Props {
 const { post, variant = 'default' } = Astro.props;
 const isFeatured = variant === 'featured';
 
-// 如果没有封面，使用基于文章标题的确定性随机封面
+// 如果没有封面，随机选择一个封面
 const coverImage = post.cover || (() => {
   if (defaultCovers.length === 0) return null;
-  // 使用文章标题作为种子，确保同一篇文章总是得到相同的封面
-  let hash = 0;
-  const seed = post.title || post.id;
-  for (let i = 0; i < seed.length; i++) {
-    const char = seed.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash;
-  }
-  const index = Math.abs(hash) % defaultCovers.length;
+  // 每次构建时随机选择封面
+  const index = Math.floor(Math.random() * defaultCovers.length);
   return defaultCovers[index];
 })();
 ---
