@@ -185,7 +185,7 @@ const GISCUS_CONFIG = {
 
 ## 📄 许可证
 
-MIT License © 2024 ailmel
+MIT License © 2026 ailmel
 
 ---
 
