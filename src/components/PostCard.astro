@@ -25,38 +25,40 @@ const coverImage = post.cover || (() => {
 ---
 
 <article 
-  class={`group relative bg-[var(--color-surface)] rounded-lg overflow-hidden border border-[var(--color-border)] transition-all duration-500 ease-[var(--ease-luxury)] hover:border-[var(--color-border-hover)] flex flex-col h-full ${isFeatured ? 'md:grid md:grid-cols-2 md:gap-0' : ''}`}
+  class={`group relative bg-[var(--color-surface)] rounded-lg overflow-hidden border border-[var(--color-border)] transition-all duration-500 ease-[var(--ease-luxury)] hover:border-[var(--color-border-hover)] flex flex-col h-full ${isFeatured ? '' : ''}`}
   style="transform: translateY(0);"
   onmouseenter="this.style.transform='translateY(-2px)'"
   onmouseleave="this.style.transform='translateY(0)'">
   
-  <!-- Cover Image -->
-  <div class={`overflow-hidden shrink-0 ${isFeatured ? 'aspect-[4/3] md:aspect-auto md:h-full' : 'aspect-[16/10]'}`}>
-    {coverImage ? (
-      <a href={`/posts/${post.slug}`} class="block h-full">
-        <img
-          src={coverImage.src}
-          alt={post.title}
-          class="w-full h-full object-cover transition-transform duration-700 ease-[var(--ease-luxury)] group-hover:scale-[1.02]"
-          loading="lazy"
-          decoding="async"
-        />
-        {isFeatured && (
-          <div class="absolute top-4 left-4 px-3 py-1 text-xs bg-[var(--color-primary)] text-white rounded-full font-medium tracking-wide">
-            置顶
-          </div>
-        )}
-      </a>
-    ) : (
-      <a href={`/posts/${post.slug}`} class="block h-full bg-[var(--color-surface-elevated)] flex items-center justify-center">
-        <span class="font-serif text-4xl text-[var(--color-text-subtle)] opacity-30">{post.title.charAt(0)}</span>
-      </a>
-    )}
-  </div>
+  <!-- Cover Image - 置顶文章不显示封面 -->
+  {!isFeatured && (
+    <div class={`overflow-hidden shrink-0 aspect-[16/10]`}>
+      {coverImage ? (
+        <a href={`/posts/${post.slug}`} class="block h-full">
+          <img
+            src={coverImage.src}
+            alt={post.title}
+            class="w-full h-full object-cover transition-transform duration-700 ease-[var(--ease-luxury)] group-hover:scale-[1.02]"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+      ) : (
+        <a href={`/posts/${post.slug}`} class="block h-full bg-[var(--color-surface-elevated)] flex items-center justify-center">
+          <span class="font-serif text-4xl text-[var(--color-text-subtle)] opacity-30">{post.title.charAt(0)}</span>
+        </a>
+      )}
+    </div>
+  )}
   
   <!-- Content -->
   <div class={`flex flex-col flex-1 ${isFeatured ? 'p-6 md:p-8 lg:p-10' : 'p-5'}`}>
     <div class="flex items-center gap-3 text-xs text-[var(--color-text-subtle)] mb-3 tracking-wide shrink-0">
+      {isFeatured && (
+        <span class="px-2 py-0.5 text-xs bg-[var(--color-primary)] text-white rounded-full font-medium tracking-wide">
+          置顶
+        </span>
+      )}
       <time datetime={post.publishedAt.toISOString()} class="font-medium leading-none">{formatDate(post.publishedAt)}</time>
       {post.category && (
         <>
