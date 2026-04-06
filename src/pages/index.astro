@@ -8,7 +8,7 @@ import TagList from '../components/TagList.astro';
 import SearchData from '../components/SearchData.astro';
 import { getCollection } from 'astro:content';
 import { sortPosts, filterPublished, mapToBlogPost, getCategories, getTags } from '../utils/content';
-import { SITE, NAVIGATION } from '../consts';
+import { SITE, NAVIGATION, HERO_TYPEWRITER } from '../consts';
 
 const posts = await getCollection('posts');
 const published = filterPublished(posts);
@@ -26,7 +26,7 @@ const regularPosts = displayPosts.filter(p => !p.data.featured || !featuredPosts
 
 // 分类和标签
 const categories = getCategories(published);
-const tags = getTags(published).slice(0, 8);
+const tags = getTags(published);
 
 const author = {
   id: '1',
@@ -45,9 +45,45 @@ const author = {
         <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-medium mb-6 leading-tight animate-fade-in-up" style="animation-delay: 0.1s;">
           {SITE.name}
         </h1>
-        <p class="text-lg md:text-xl text-[var(--color-text-muted)] leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s;">
-          {SITE.description}
-        </p>
+        <!-- 打字机效果描述 -->
+        <div 
+          class="text-lg md:text-xl text-[var(--color-text-muted)] leading-relaxed flex items-center justify-center"
+          x-data={`{ 
+            texts: ${JSON.stringify(HERO_TYPEWRITER.texts)}, 
+            currentText: '', 
+            textIndex: 0, 
+            charIndex: 0, 
+            isDeleting: false,
+            typeSpeed: ${HERO_TYPEWRITER.typeSpeed},
+            deleteSpeed: ${HERO_TYPEWRITER.deleteSpeed},
+            pauseTime: ${HERO_TYPEWRITER.pauseTime},
+            type() {
+              const fullText = this.texts[this.textIndex];
+              if (this.isDeleting) {
+                this.currentText = fullText.substring(0, this.charIndex - 1);
+                this.charIndex--;
+              } else {
+                this.currentText = fullText.substring(0, this.charIndex + 1);
+                this.charIndex++;
+              }
+              
+              let speed = this.isDeleting ? this.deleteSpeed : this.typeSpeed;
+              
+              if (!this.isDeleting && this.charIndex === fullText.length) {
+                speed = this.pauseTime;
+                this.isDeleting = true;
+              } else if (this.isDeleting && this.charIndex === 0) {
+                this.isDeleting = false;
+                this.textIndex = (this.textIndex + 1) % this.texts.length;
+              }
+              
+              setTimeout(() => this.type(), speed);
+            }
+          }`}
+          x-init="type()">
+          <span x-text="currentText" class="font-light"></span>
+          <span class="inline-block w-0.5 h-[1.2em] bg-[var(--color-primary)] ml-0.5 animate-pulse align-middle"></span>
+        </div>
         
         <!-- Quick Stats -->
         <div class="flex items-center justify-center gap-8 mt-8 text-sm text-[var(--color-text-subtle)] animate-fade-in-up" style="animation-delay: 0.3s;">

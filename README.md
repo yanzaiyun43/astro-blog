@@ -112,9 +112,76 @@ export const SITE = {
 };
 ```
 
+### 导航菜单
+
+编辑 `src/consts.ts` 中的 `NAVIGATION`：
+
+```typescript
+export const NAVIGATION = {
+  home: '/',
+  posts: '/posts',
+  friends: '/friends',
+  about: '/about',
+  rss: '/rss.xml',
+};
+```
+
+### 社交链接
+
+编辑 `src/consts.ts` 中的 `SOCIAL_LINKS`：
+
+```typescript
+export const SOCIAL_LINKS = {
+  github: 'https://github.com/yanzaiyun43',
+  sitemap: '/sitemap-index.xml',
+  email: 'mailto:ailmel@163.com',
+  rss: '/rss.xml',
+};
+```
+
+### 博客配置
+
+编辑 `src/consts.ts` 中的 `BLOG_CONFIG`：
+
+```typescript
+export const BLOG_CONFIG = {
+  postsPerPage: 6,        // 首页每页文章数
+  dateFormat: 'yyyy-MM-dd',
+  readingSpeed: 300,      // 每分钟阅读字数
+};
+```
+
+### 首页打字机效果
+
+编辑 `src/consts.ts` 中的 `HERO_TYPEWRITER`：
+
+```typescript
+export const HERO_TYPEWRITER = {
+  texts: [
+    '记录技术、设计与生活的点滴思考',
+    '分享极简主义的设计理念',
+    '探索优雅代码的艺术',
+    '连接过去与现在的桥梁',
+  ],
+  typeSpeed: 150,     // 打字速度（毫秒）
+  deleteSpeed: 100,   // 删除速度（毫秒）
+  pauseTime: 2500,    // 打完后的停顿时间（毫秒）
+};
+```
+
 ### Giscus 评论
 
-编辑 `src/components/Giscus.astro`，配置你的 GitHub 仓库信息。
+编辑 `src/components/Giscus.astro`，配置你的 GitHub 仓库信息：
+
+```typescript
+const GISCUS_CONFIG = {
+  repo: '你的用户名/仓库名',
+  repoId: '你的仓库ID',
+  category: 'Announcements',
+  categoryId: '你的分类ID',
+  // ...
+};
+```
 
 ## 📄 许可证
 

@@ -22,7 +22,7 @@ export const NAVIGATION = {
 } as const;
 
 export const SOCIAL_LINKS = {
-  github: 'https://github.com/zaiyunyan43',
+  github: 'https://github.com/yanzaiyun43',
   sitemap: '/sitemap-index.xml',
   email: 'mailto:ailmel@163.com',
   rss: '/rss.xml',
@@ -32,6 +32,16 @@ export const BLOG_CONFIG = {
   postsPerPage: 6,
   dateFormat: 'yyyy-MM-dd',
   readingSpeed: 300, // 每分钟阅读字数
+} as const;
+
+export const HERO_TYPEWRITER = {
+  texts: [
+    '记录技术、设计与生活的点滴思考',
+    '分享极简主义的设计理念',
+  ],
+  typeSpeed: 150,
+  deleteSpeed: 100,
+  pauseTime: 2500,
 } as const;
 
 export const META = {
