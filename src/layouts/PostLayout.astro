@@ -95,6 +95,15 @@ const hasToc = headings.filter(h => h.depth <= 3).length > 0;
               </div>
               
               <div class="flex items-center gap-2">
+                <a 
+                  href="/rss.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-1.5 px-3 py-1.5 text-sm text-[var(--color-text-subtle)] hover:text-[var(--color-primary)] transition-colors duration-200 rounded-md hover:bg-[var(--color-surface-elevated)] border border-[var(--color-border)] hover:border-[var(--color-primary)]"
+                  title="订阅 RSS">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+                  <span>订阅RSS</span>
+                </a>
                 <button 
                   @click="navigator.clipboard.writeText(window.location.href).then(() => { copied = true; setTimeout(() => copied = false, 2000); })"
                   class="flex items-center gap-1.5 px-3 py-1.5 text-sm text-[var(--color-text-subtle)] hover:text-[var(--color-primary)] transition-colors duration-200 rounded-md hover:bg-[var(--color-surface-elevated)] border border-[var(--color-border)] hover:border-[var(--color-primary)]"

@@ -45,7 +45,14 @@ const socialLinks = [
     
     <!-- 底部版权栏 -->
     <div class="mt-8 pt-8 border-t border-[var(--color-border-subtle)] flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[var(--color-text-subtle)]">
-      <p>&copy; {currentYear} {SITE.name}. 保留所有权利。</p>
+      <p class="flex items-center gap-2">
+        <span>&copy; {currentYear} {SITE.name}. 保留所有权利。</span>
+        <span class="hidden md:inline text-[var(--color-border)]">|</span>
+        <span class="flex items-center gap-1" title="从 2025-12-31 开始运行">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="run-days">加载中...</span>
+        </span>
+      </p>
       <p class="flex items-center gap-4">
         <span class="flex items-center gap-1">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -56,6 +63,18 @@ const socialLinks = [
     </div>
   </div>
 </footer>
+
+<!-- 运行天数计算 -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const runDaysEl = document.getElementById('run-days');
+    if (runDaysEl) {
+      const startDate = new Date('2025-12-31');
+      const runDays = Math.floor((new Date().getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+      runDaysEl.textContent = '本站稳定运行 ' + runDays + ' 天';
+    }
+  });
+</script>
 
 <!-- 访客统计 -->
 <script is:inline>
@@ -82,7 +101,7 @@ const socialLinks = [
     fetch(`https://ailmel.dpdns.org/visit.php?api=1&visitorId=${visitorId}`)
       .then(res => res.json())
       .then(data => {
-        countEl.textContent = data.total + ' 位访客' || '获取失败';
+        countEl.textContent = '本站已累计访问 ' + data.total + ' 位访客' || '获取失败';
       })
       .catch(err => {
         countEl.textContent = '获取失败';
