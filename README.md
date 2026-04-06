@@ -2,8 +2,6 @@
 
 基于 Astro 5.0 + Tailwind CSS + TypeScript 构建的极简风格静态博客。
 
-**在线访问**: [https://ailmel.top](https://ailmel.top)
-
 ## ✨ 特性
 
 - **极简设计** - 柔和浅蓝/浅灰/米白配色，细线条贯穿，无多余装饰
