@@ -89,7 +89,7 @@ const coverImage = post.cover || (() => {
       {post.tags.length > 0 ? (
         <>
           {post.tags.slice(0, 3).map(tag => (
-            <span class="px-2.5 py-1 text-xs bg-[var(--color-surface-elevated)] rounded text-[var(--color-text-subtle)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-subtle)] transition-all duration-200 cursor-default">
+            <span class="px-2.5 py-1 text-xs bg-[var(--color-surface-elevated)] rounded text-[var(--color-text-subtle)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary-subtle)] transition-all duration-200 cursor-default whitespace-nowrap">
               {tag.name}
             </span>
           ))}

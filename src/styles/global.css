@@ -269,6 +269,11 @@ img {
   color: var(--color-text-muted);
   line-height: 1.85;
   font-size: 1.0625rem;
+  /* 防止内容溢出 */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .prose h1, .prose h2, .prose h3, .prose h4 {
@@ -302,6 +307,7 @@ img {
   color: var(--color-primary-hover);
   border-bottom: 1px solid transparent;
   transition: border-color var(--duration-fast) var(--ease-luxury);
+  word-break: break-all;
 }
 
 .prose a:hover {
@@ -345,6 +351,7 @@ img {
   border-radius: 0.25rem;
   color: var(--color-primary-hover);
   font-weight: 500;
+  word-break: break-all;
 }
 
 .prose pre {
@@ -392,6 +399,9 @@ img {
   border-collapse: collapse;
   margin: 1.5rem 0;
   font-size: 0.9375rem;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .prose th, .prose td {
