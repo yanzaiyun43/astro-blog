@@ -43,7 +43,7 @@ const author = {
 const baseUrl = NAVIGATION.posts;
 ---
 
-<BaseLayout title={page.currentPage === 1 ? SITE.name : `第 ${page.currentPage} 页 - ${SITE.name}`} description="浏览全部文章存档" class="pt-16">
+<BaseLayout title={page.currentPage === 1 ? `文章` : `第 ${page.currentPage} 页`} description="浏览全部文章存档" class="pt-16">
   <Navbar slot="header" />
   
   <div class="w-full">

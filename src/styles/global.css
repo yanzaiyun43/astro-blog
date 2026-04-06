@@ -501,15 +501,13 @@ img {
   
   .prose pre {
     padding: 1rem;
-    margin: 1.25rem -1rem;
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
+    margin: 1.25rem 0;
+    border-radius: 0.5rem;
   }
   
-  /* Larger touch targets */
-  button, a {
-    min-height: 44px;
-    min-width: 44px;
+  /* 代码复制按钮在移动端保持小尺寸 */
+  .code-copy-btn {
+    min-height: auto;
+    min-width: auto;
   }
 }

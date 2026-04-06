@@ -1,10 +1,10 @@
 ---
-title: "旧识桥：我的全新 Astro 博客"
+title: "我的全新 Astro 博客"
 description: "欢迎来到旧识桥，这是 ailmel 关于极简主义、设计与技术的个人空间。介绍旧识桥博客的技术架构，基于 Astro 构建的极简主义博客框架，融合轻奢美学与现代前端技术。"
 publishedAt: 2026-01-06
 category: "项目介绍"
 tags: ["Astro", "博客", "旧识桥", "ailmel"]
-featured: false
+featured: true
 ---
 
 ## 博客缘起
@@ -86,30 +86,10 @@ featured: true
 | [TypeScript](https://typescriptlang.org) | 类型安全的开发体验 |
 | [Alpine.js](https://alpinejs.dev) | 轻量级 JavaScript 交互 |
 
-## 快速开始
-
-```bash
-# 克隆项目
-git clone https://github.com/yourusername/minimalist-luxury-blog.git
-
-# 安装依赖
-npm install
-
-# 启动开发服务器
-npm run dev
-
-# 构建生产版本
-npm run build
-```
 
 ## 未来规划
 
-这个项目将持续演进，计划中的功能包括：
-
-- [ ] 多语言支持
-- [ ] 更多主题预设
-- [ ] 插件系统
-- [ ] 在线编辑器
+这个项目将持续演进，尽请期待
 
 ## 结语
 

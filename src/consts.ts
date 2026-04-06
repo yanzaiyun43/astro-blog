@@ -1,6 +1,6 @@
 export const SITE = {
   name: '旧识桥',
-  title: '旧识桥 - ailmel 的博客',
+  title: '旧识桥',
   description: '什么都略懂一点，生活更多彩一些',
   url: 'https://ailmel.top',
   defaultAuthor: 'ailmel',
