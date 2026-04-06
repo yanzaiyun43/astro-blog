@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import { filterPublished, sortPosts, generateSlug } from '../utils/content';
+import { SITE } from '../consts';
+
+const posts = await getCollection('posts');
+const published = filterPublished(posts);
+const sorted = sortPosts(published);
+
+// 为每篇文章生成 slug
+const postsWithSlug = sorted.map(post => ({
+  ...post,
+  slug: post.data.slug || post.id.replace(/\.mdx?$/, '').replace(/\/index$/, ''),
+}));
+
+// 按年份分组
+const postsByYear = postsWithSlug.reduce((acc, post) => {
+  const year = post.data.publishedAt.getFullYear();
+  if (!acc[year]) {
+    acc[year] = [];
+  }
+  acc[year].push(post);
+  return acc;
+}, {} as Record<number, typeof postsWithSlug>);
+
+const years = Object.keys(postsByYear).map(Number).sort((a, b) => b - a);
+
+const months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+---
+
+<BaseLayout title="归档" description="按时间浏览所有文章" class="pt-16">
+  <Navbar slot="header" />
+  
+  <div class="container-luxury section-padding pt-24">
+    <!-- Header -->
+    <div class="text-center mb-16 max-w-2xl mx-auto">
+      <h1 class="font-serif text-3xl md:text-4xl font-medium mb-4 text-[var(--color-text)]">文章归档</h1>
+      <p class="text-[var(--color-text-muted)]">共 {published.length} 篇文章，按年份整理</p>
+    </div>
+    
+    <!-- Timeline -->
+    <div class="max-w-3xl mx-auto">
+      {years.map((year, yearIndex) => (
+        <div class="mb-12 last:mb-0">
+          <!-- Year Header -->
+          <div class="flex items-center gap-4 mb-6">
+            <span class="font-serif text-2xl md:text-3xl font-medium text-[var(--color-primary)]">{year}</span>
+            <span class="text-sm text-[var(--color-text-subtle)]">{postsByYear[year].length} 篇</span>
+            <div class="flex-1 h-px bg-[var(--color-border)]"></div>
+          </div>
+          
+          <!-- Posts List -->
+          <div class="space-y-4 pl-4 md:pl-8 border-l-2 border-[var(--color-border)] ml-2 md:ml-3">
+            {postsByYear[year].map((post, postIndex) => (
+              <div 
+                class="relative pl-6 md:pl-8 py-2 group"
+                style={`animation-delay: ${0.05 * (yearIndex * 10 + postIndex)}s;`}>
+                <!-- Dot -->
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-[calc(0.5rem+1px)] md:-translate-x-[calc(1rem+1px)] w-2 h-2 rounded-full bg-[var(--color-border)] group-hover:bg-[var(--color-primary)] transition-colors duration-200"></div>
+                
+                <a 
+                  href={`/posts/${post.slug}`}
+                  class="block -ml-6 md:-ml-8 pl-6 md:pl-8">
+                  <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                    <time class="text-sm text-[var(--color-text-subtle)] shrink-0 w-20">
+                      {months[post.data.publishedAt.getMonth()]}{post.data.publishedAt.getDate()}日
+                    </time>
+                    <h3 class="text-base text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors duration-200 line-clamp-1">
+                      {post.data.title}
+                    </h3>
+                  </div>
+                  {post.data.description && (
+                    <p class="text-sm text-[var(--color-text-muted)] mt-1 line-clamp-1 ml-0 sm:ml-24">
+                      {post.data.description}
+                    </p>
+                  )}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Back to Top -->
+    <div class="mt-16 text-center">
+      <button 
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+        class="inline-flex items-center gap-2 px-6 py-3 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] border border-[var(--color-border)] hover:border-[var(--color-primary)] rounded-subtle transition-all duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+        回到顶部
+      </button>
+    </div>
+  </div>
+  
+  <Footer slot="footer" />
+</BaseLayout>

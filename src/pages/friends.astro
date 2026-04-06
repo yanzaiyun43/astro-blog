@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import Giscus from '../components/Giscus.astro';
 import { SITE, NAVIGATION } from '../consts';
 
 interface Friend {
@@ -95,7 +96,7 @@ const applyInfo = {
         <ul class="space-y-2 mb-8 text-[var(--color-text-muted)]">
           <li class="flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[var(--color-primary)]"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>原创内容为主，更新稳定</span>
+            <span>个人博客非盈利性</span>
           </li>
           <li class="flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[var(--color-primary)]"><polyline points="20 6 9 17 4 12"/></svg>
@@ -121,6 +122,11 @@ const applyInfo = {
         </div>
       </div>
     </div>
+  </div>
+  
+  <!-- Comments Section -->
+  <div class="container-luxury section-padding pt-0">
+    <Giscus slug="friends" title="友情链接" />
   </div>
   
   <Footer slot="footer" />

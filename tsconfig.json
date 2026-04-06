@@ -16,7 +16,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "moduleResolution": "bundler",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "astro"
   },
   "include": ["src/**/*", ".astro/types.d.ts"],
   "exclude": ["node_modules", "dist"]

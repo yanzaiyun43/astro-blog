@@ -1,7 +1,7 @@
 export const SITE = {
   name: '旧识桥',
   title: '旧识桥 - ailmel 的博客',
-  description: '记录技术、设计与生活的点滴思考',
+  description: '什么都略懂一点，生活更多彩一些',
   url: 'https://ailmel.top',
   defaultAuthor: 'ailmel',
   language: 'zh-CN',
@@ -16,6 +16,7 @@ export const SITE = {
 export const NAVIGATION = {
   home: '/',
   posts: '/posts',
+  archive: '/archive',
   friends: '/friends',
   about: '/about',
   rss: '/rss.xml',
@@ -36,12 +37,12 @@ export const BLOG_CONFIG = {
 
 export const HERO_TYPEWRITER = {
   texts: [
-    '记录技术、设计与生活的点滴思考',
-    '分享极简主义的设计理念',
+    'Per asprera ad astra.',
+    '循此苦旅，终抵群星。',
   ],
   typeSpeed: 150,
   deleteSpeed: 100,
-  pauseTime: 2500,
+  pauseTime: 2000,
 } as const;
 
 export const META = {

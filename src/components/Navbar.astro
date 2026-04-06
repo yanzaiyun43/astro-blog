@@ -5,7 +5,7 @@ import Search from './Search.astro';
 
 const navItems = [
   { label: '首页', href: NAVIGATION.home },
-  { label: '文章', href: NAVIGATION.posts },
+  { label: '归档', href: NAVIGATION.archive },
   { label: '友链', href: NAVIGATION.friends },
   { label: '关于', href: NAVIGATION.about },
 ];
@@ -13,18 +13,10 @@ const navItems = [
 
 <header 
   x-data="{ 
-    hidden: false, 
-    lastScroll: 0,
     mobileOpen: false 
   }"
   x-init="$watch('mobileOpen', value => document.body.classList.toggle('overflow-hidden', value))"
-  @scroll.window.throttle.100ms="
-    const current = window.pageYOffset;
-    hidden = current > lastScroll && current > 100 && !mobileOpen;
-    lastScroll = current;
-  "
-  :class="{ '-translate-y-full': hidden }"
-  class="fixed top-0 left-0 right-0 z-50 transition-transform duration-500 ease-[var(--ease-luxury)] bg-[var(--color-bg)]/90 backdrop-blur-md border-b border-[var(--color-border)]">
+  class="fixed top-0 left-0 right-0 z-50 bg-[var(--color-bg)]/90 backdrop-blur-md border-b border-[var(--color-border)]">
   
   <nav class="container-luxury h-16 flex items-center justify-between gap-4">
     <!-- Logo -->
