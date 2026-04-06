@@ -1,0 +1,159 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { BlogPost } from '../types';
+import { formatDate, estimateReadingTime, countWords } from '../utils/content';
+import Giscus from '../components/Giscus.astro';
+
+interface Props {
+  post: BlogPost;
+  headings?: { depth: number; slug: string; text: string }[];
+  relatedPosts?: BlogPost[];
+}
+
+const { post, headings = [], relatedPosts = [] } = Astro.props;
+
+const readingTime = estimateReadingTime(post.content);
+const wordCount = countWords(post.content);
+const hasToc = headings.filter(h => h.depth <= 3).length > 0;
+---
+
+<BaseLayout 
+  title={post.title} 
+  description={post.description}
+  image={post.cover?.src}
+  type="article"
+  publishDate={post.publishedAt}
+  modifiedDate={post.updatedAt}
+  tags={post.tags.map(t => t.name)}
+  class="w-full pt-16"
+>
+  <div slot="header">
+    <slot name="header" />
+  </div>
+  
+  <article class="w-full">
+    <!-- Header -->
+    <header class="w-full border-b border-[var(--color-border)]">
+      <div class="container-luxury section-padding">
+        <div class="max-w-3xl mx-auto text-center">
+          <div class="flex items-center justify-center gap-3 text-sm text-[var(--color-text-subtle)] mb-4 tracking-wide">
+            <time datetime={post.publishedAt.toISOString()} class="font-medium">{formatDate(post.publishedAt)}</time>
+            <span class="w-1 h-1 rounded-full bg-[var(--color-text-subtle)] opacity-50"></span>
+            <span>{readingTime} 分钟阅读</span>
+            <span class="w-1 h-1 rounded-full bg-[var(--color-text-subtle)] opacity-50"></span>
+            <span>{wordCount} 字</span>
+          </div>
+          
+          <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl font-medium mb-4 leading-tight text-balance">
+            {post.title}
+          </h1>
+          
+          <p class="text-lg text-[var(--color-text-muted)] leading-relaxed max-w-2xl mx-auto text-balance">
+            {post.description}
+          </p>
+          
+          {post.tags.length > 0 && (
+            <div class="flex items-center justify-center gap-2 mt-6 flex-wrap">
+              {post.tags.map(tag => (
+                <a 
+                  href={`/tags/${tag.slug}`}
+                  class="px-3 py-1 text-xs tracking-wide border border-[var(--color-border)] rounded-md text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] hover:bg-[var(--color-primary-subtle)] transition-all duration-200">
+                  {tag.name}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </header>
+    
+    <!-- Body -->
+    <div class="container-luxury py-12 md:py-16">
+      <div class="flex gap-12">
+        <div class="flex-1 max-w-3xl mx-auto">
+          <div class="prose prose-lg prose-custom mx-auto">
+            <slot />
+          </div>
+          
+          <!-- Article Footer -->
+          <footer class="mt-12 pt-8 border-t border-[var(--color-border)]">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+              <div class="flex items-center gap-3">
+                {post.author.avatar && (
+                  <img src={post.author.avatar.src} alt={post.author.name} class="w-10 h-10 rounded-full object-cover border border-[var(--color-border)]" />
+                )}
+                <div>
+                  <p class="text-sm font-medium text-[var(--color-text)]">{post.author.name}</p>
+                  <p class="text-xs text-[var(--color-text-subtle)]">
+                    {post.updatedAt ? `更新于 ${formatDate(post.updatedAt)}` : `发布于 ${formatDate(post.publishedAt)}`}
+                  </p>
+                </div>
+              </div>
+              
+              <div class="flex items-center gap-2">
+                <button 
+                  @click="navigator.clipboard.writeText(window.location.href).then(() => alert('链接已复制'))"
+                  class="p-2 text-[var(--color-text-subtle)] hover:text-[var(--color-primary)] transition-colors duration-200 rounded-md hover:bg-[var(--color-surface-elevated)]"
+                  title="复制链接">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                </button>
+              </div>
+            </div>
+          </footer>
+          
+          <!-- Giscus Comments -->
+          <Giscus slug={post.slug} title={post.title} />
+          
+          <!-- Prev/Next Slot -->
+          <slot name="article-footer" />
+        </div>
+        
+        <!-- TOC -->
+        {hasToc && (
+          <aside class="hidden lg:block w-64 shrink-0">
+            <div class="sticky top-24">
+              <h3 class="text-xs font-medium uppercase tracking-wider text-[var(--color-text-subtle)] mb-4">目录</h3>
+              <nav class="space-y-1 border-l border-[var(--color-border)]">
+                {headings.filter(h => h.depth <= 3).map(heading => (
+                  <a 
+                    href={`#${heading.slug}`}
+                    class={`block text-sm py-1 border-l-2 -ml-px pl-4 transition-all duration-200 ${heading.depth === 2 ? 'border-transparent text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)]' : 'border-transparent text-[var(--color-text-subtle)] hover:text-[var(--color-primary)] pl-6'}`}>
+                    {heading.text}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </aside>
+        )}
+      </div>
+    </div>
+    
+    <!-- Related Posts -->
+    {relatedPosts.length > 0 && (
+      <section class="border-t border-[var(--color-border)] bg-[var(--color-surface-elevated)]">
+        <div class="container-luxury section-padding">
+          <h2 class="font-serif text-2xl font-medium mb-8 text-center">相关文章</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {relatedPosts.map(related => (
+              <article class="group">
+                <a href={`/posts/${related.slug}`} class="block">
+                  {related.cover && (
+                    <div class="aspect-[16/10] overflow-hidden rounded-lg mb-4 border border-[var(--color-border)]">
+                      <img src={related.cover.src} alt={related.title} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
+                    </div>
+                  )}
+                  <h3 class="font-medium text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors duration-200 line-clamp-2 text-balance">{related.title}</h3>
+                  <p class="text-sm text-[var(--color-text-subtle)] mt-2">{formatDate(related.publishedAt)}</p>
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+  </article>
+  
+  <div slot="footer">
+    <slot name="footer" />
+  </div>
+</BaseLayout>

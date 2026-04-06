@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, NAVIGATION } from '../consts';
+
+interface Friend {
+  name: string;
+  url: string;
+  avatar: string;
+  description: string;
+}
+
+// 友链列表 - 修改为你的友链
+const friends: Friend[] = [
+  // 示例友链，可以删除或替换为真实友链
+  // {
+  //   name: '朋友博客',
+  //   url: 'https://example.com',
+  //   avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=example',
+  //   description: '一个优秀的个人博客',
+  // },
+];
+
+// 本站信息 - 用于展示给想交换友链的人
+const applyInfo = {
+  name: SITE.name,
+  url: SITE.url,
+  avatar: `${SITE.url}/avatar.png`, // 替换为你的头像路径
+  description: SITE.description,
+};
+---
+
+<BaseLayout 
+  title="友情链接" 
+  description={`${SITE.name}的友情链接页面，欢迎交换链接`}
+  class="pt-16"
+>
+  <Navbar slot="header" />
+  
+  <div class="container-luxury section-padding">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <h1 class="font-serif text-3xl md:text-4xl font-medium mb-4 text-[var(--color-text)]">
+        友情链接
+      </h1>
+      <p class="text-[var(--color-text-muted)] leading-relaxed">
+        与志同道合的朋友交换链接，互相学习，共同进步。
+      </p>
+    </div>
+    
+    <!-- Friends Grid -->
+    {friends.length > 0 ? (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        {friends.map(friend => (
+          <a 
+            href={friend.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-start gap-4 p-5 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg hover:border-[var(--color-border-hover)] hover:shadow-luxury-hover transition-all duration-300">
+            <img 
+              src={friend.avatar} 
+              alt={friend.name}
+              class="w-14 h-14 rounded-full object-cover border border-[var(--color-border)] shrink-0"
+              loading="lazy"
+            />
+            <div class="min-w-0">
+              <h3 class="font-medium text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors duration-200 truncate">
+                {friend.name}
+              </h3>
+              <p class="text-sm text-[var(--color-text-muted)] mt-1 line-clamp-2">
+                {friend.description}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-16 mb-16 border border-dashed border-[var(--color-border)] rounded-lg">
+        <p class="text-[var(--color-text-subtle)]">暂无友链，欢迎申请交换</p>
+      </div>
+    )}
+    
+    <!-- Apply Section -->
+    <div class="max-w-2xl mx-auto">
+      <div class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6 md:p-8">
+        <h2 class="font-serif text-xl font-medium mb-6 text-[var(--color-text)]">
+          申请友链
+        </h2>
+        
+        <p class="text-[var(--color-text-muted)] mb-6 leading-relaxed">
+          如果你想交换友链，请确保你的网站满足以下条件：
+        </p>
+        
+        <ul class="space-y-2 mb-8 text-[var(--color-text-muted)]">
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[var(--color-primary)]"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>原创内容为主，更新稳定</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[var(--color-primary)]"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>无违法违规内容</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[var(--color-primary)]"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>网站可正常访问</span>
+          </li>
+        </ul>
+        
+        <div class="border-t border-[var(--color-border)] pt-6">
+          <h3 class="text-sm font-medium text-[var(--color-text)] mb-4">本站信息</h3>
+          <div class="bg-[var(--color-surface-elevated)] rounded-md p-4 font-mono text-sm text-[var(--color-text-muted)] space-y-1 overflow-x-auto">
+            <div>名称: {applyInfo.name}</div>
+            <div>链接: {applyInfo.url}</div>
+            <div>头像: {applyInfo.avatar}</div>
+            <div>描述: {applyInfo.description}</div>
+          </div>
+          <p class="text-xs text-[var(--color-text-subtle)] mt-3">
+            请添加本站信息后，通过邮件或留言告知我你的站点信息。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <Footer slot="footer" />
+</BaseLayout>

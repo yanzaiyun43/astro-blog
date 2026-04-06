@@ -1,62 +1,109 @@
-# Astro Starter Kit: Blog
+# 旧识桥 - ailmel 的博客
 
-```sh
-npm create astro@latest -- --template blog
+基于 Astro 5.0 + Tailwind CSS + TypeScript 构建的极简风格静态博客。
+
+**在线访问**: [https://ailmel.top](https://ailmel.top)
+
+## ✨ 特性
+
+- **极简设计** - 柔和浅蓝/浅灰/米白配色，细线条贯穿，无多余装饰
+- **流畅动画** - 页面淡入、卡片微动效、平滑过渡，时长精心调校
+- **完美响应式** - 适配手机/平板/桌面，触摸优化
+- **暗色模式** - 自动/手动切换，平滑过渡
+- **轻量搜索** - 客户端实时搜索，⌘K 快捷键
+- **Giscus 评论** - GitHub Discussions 驱动，极简风格
+- **SEO 优化** - 自动生成 sitemap、RSS、OG 标签
+- **高性能** - 静态生成，图片优化，Prefetch 预加载
+
+## 🚀 快速开始
+
+### 1. 克隆项目
+
+```bash
+git clone https://github.com/ailmel/old-bridge.git
+cd old-bridge
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### 2. 安装依赖
 
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```bash
+npm install
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### 3. 启动开发服务器
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+npm run dev
+```
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+访问 http://localhost:4321
 
-Any static assets, like images, can be placed in the `public/` directory.
+### 4. 构建生产版本
 
-## 🧞 Commands
+```bash
+npm run build
+```
 
-All commands are run from the root of the project, from a terminal:
+## 📝 写作指南
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+在 `src/content/posts/` 目录下创建 `.md` 或 `.mdx` 文件：
 
-## 👀 Want to learn more?
+```markdown
+---
+title: "文章标题"
+description: "文章简介"
+publishedAt: 2024-01-01
+category: "分类"
+tags: ["标签1", "标签2"]
+featured: true  # 是否置顶
+---
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+正文内容...
+```
 
-## Credit
+## 🛠️ 技术栈
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+- [Astro](https://astro.build) - 静态站点生成器
+- [Tailwind CSS](https://tailwindcss.com) - CSS 框架
+- [TypeScript](https://typescriptlang.org) - 类型安全
+- [Alpine.js](https://alpinejs.dev) - 轻量级交互
+
+## 📦 部署
+
+支持多种静态托管平台：
+
+- **Vercel** - `vercel --prod`
+- **Netlify** - `netlify deploy --prod`
+- **GitHub Pages** - 自动部署（见 `.github/workflows/deploy.yml`）
+- **Cloudflare Pages** - `wrangler pages deploy dist`
+
+详细部署指南见 [DEPLOY.md](./DEPLOY.md)
+
+## ⚙️ 配置
+
+### 站点信息
+
+编辑 `src/consts.ts`：
+
+```typescript
+export const SITE = {
+  name: '旧识桥',
+  title: '旧识桥 - ailmel 的博客',
+  description: '记录技术、设计与生活的点滴思考',
+  url: 'https://ailmel.top',
+  defaultAuthor: 'ailmel',
+  // ...
+};
+```
+
+### Giscus 评论
+
+编辑 `src/components/Giscus.astro`，配置你的 GitHub 仓库信息。
+
+## 📄 许可证
+
+MIT License © 2024 ailmel
+
+---
+
+欢迎 Star ⭐ 和 Fork！

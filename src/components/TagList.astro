@@ -1,0 +1,33 @@
+---
+interface Tag {
+  name: string;
+  slug: string;
+  count?: number;
+}
+
+interface Props {
+  tags: Tag[];
+  currentTag?: string;
+  variant?: 'default' | 'compact';
+}
+
+const { tags, currentTag, variant = 'default' } = Astro.props;
+---
+
+<div class={`flex flex-wrap gap-2 ${variant === 'compact' ? 'gap-1.5' : 'gap-2'}`}>
+  {tags.map(tag => {
+    const isActive = currentTag === tag.slug;
+    return (
+      <a 
+        href={`/tags/${tag.slug}`}
+        class={`group inline-flex items-center transition-all duration-300 ${variant === 'compact' ? 'px-2.5 py-1 text-xs' : 'px-3 py-1.5 text-sm'} rounded-subtle border ${isActive ? 'border-[var(--color-primary)] text-[var(--color-primary)] bg-[var(--color-primary-subtle)]' : 'border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]'}`}>
+        <span>{tag.name}</span>
+        {tag.count !== undefined && (
+          <span class={`ml-1.5 text-[var(--color-text-subtle)] group-hover:text-[var(--color-primary)] transition-colors duration-300 ${variant === 'compact' ? 'text-[10px]' : 'text-xs'}`}>
+            {tag.count}
+          </span>
+        )}
+      </a>
+    );
+  })}
+</div>

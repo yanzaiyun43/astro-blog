@@ -1,0 +1,73 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl: string;
+}
+
+const { currentPage, totalPages, baseUrl } = Astro.props;
+
+const getPageUrl = (page: number) => page === 1 ? baseUrl : `${baseUrl}/page/${page}`;
+
+const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+const visiblePages = pages.filter(p => 
+  p === 1 || 
+  p === totalPages || 
+  (p >= currentPage - 1 && p <= currentPage + 1)
+);
+---
+
+<nav class="flex items-center justify-center gap-2 mt-12" aria-label="分页">
+  <!-- Previous -->
+  {currentPage > 1 ? (
+    <a 
+      href={getPageUrl(currentPage - 1)}
+      class="p-2 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-300"
+      aria-label="上一页">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </a>
+  ) : (
+    <span class="p-2 text-[var(--color-border)] cursor-not-allowed">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </span>
+  )}
+  
+  <!-- Page Numbers -->
+  <div class="flex items-center gap-1">
+    {visiblePages.map((page, index) => {
+      const showEllipsis = index > 0 && page - visiblePages[index - 1] > 1;
+      return (
+        <>
+          {showEllipsis && (
+            <span class="px-3 py-1 text-[var(--color-text-subtle)]">...</span>
+          )}
+          {page === currentPage ? (
+            <span class="px-3 py-1 text-sm font-medium text-[var(--color-primary)] border-b border-[var(--color-primary)]">
+              {page}
+            </span>
+          ) : (
+            <a 
+              href={getPageUrl(page)}
+              class="px-3 py-1 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-300">
+              {page}
+            </a>
+          )}
+        </>
+      );
+    })}
+  </div>
+  
+  <!-- Next -->
+  {currentPage < totalPages ? (
+    <a 
+      href={getPageUrl(currentPage + 1)}
+      class="p-2 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-300"
+      aria-label="下一页">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </a>
+  ) : (
+    <span class="p-2 text-[var(--color-border)] cursor-not-allowed">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </span>
+  )}
+</nav>

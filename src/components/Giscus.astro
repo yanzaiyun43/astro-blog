@@ -1,0 +1,56 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+}
+
+const { slug, title } = Astro.props;
+
+// Giscus 配置 - 需要替换为你的仓库信息
+const GISCUS_CONFIG = {
+  repo: 'yourusername/yourrepo',        // 修改：你的 GitHub 仓库
+  repoId: 'R_kgDOGxxxxxx',              // 修改：你的仓库 ID
+  category: 'Announcements',             // 讨论分类
+  categoryId: 'DIC_kwDOGxxxxxx',        // 修改：分类 ID
+  mapping: 'pathname',
+  reactionsEnabled: '1',
+  emitMetadata: '0',
+  inputPosition: 'bottom',
+  lang: 'zh-CN',
+};
+---
+
+<div class="mt-12 pt-8 border-t border-[var(--color-border)]">
+  <h3 class="font-serif text-xl font-medium mb-6 text-[var(--color-text)]">评论</h3>
+  
+  <div class="giscus-wrapper rounded-lg border border-[var(--color-border)] overflow-hidden bg-[var(--color-surface)]">
+    <script
+      src="https://giscus.app/client.js"
+      data-repo={GISCUS_CONFIG.repo}
+      data-repo-id={GISCUS_CONFIG.repoId}
+      data-category={GISCUS_CONFIG.category}
+      data-category-id={GISCUS_CONFIG.categoryId}
+      data-mapping={GISCUS_CONFIG.mapping}
+      data-strict="0"
+      data-reactions-enabled={GISCUS_CONFIG.reactionsEnabled}
+      data-emit-metadata={GISCUS_CONFIG.emitMetadata}
+      data-input-position={GISCUS_CONFIG.inputPosition}
+      data-theme="preferred_color_scheme"
+      data-lang={GISCUS_CONFIG.lang}
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async
+    ></script>
+  </div>
+</div>
+
+<style>
+  .giscus-wrapper {
+    min-height: 200px;
+  }
+  
+  /* Giscus iframe styling */
+  .giscus-wrapper iframe {
+    width: 100% !important;
+  }
+</style>

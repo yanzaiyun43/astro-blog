@@ -1,0 +1,131 @@
+---
+// 轻量客户端搜索组件
+---
+
+<div class="relative" x-data="{ 
+  open: false, 
+  query: '', 
+  results: [],
+  
+  search() {
+    if (this.query.length < 2) {
+      this.results = [];
+      return;
+    }
+    // 从页面预加载数据搜索
+    const posts = window.__POSTS__ || [];
+    const q = this.query.toLowerCase();
+    this.results = posts.filter(p => 
+      p.title.toLowerCase().includes(q) || 
+      p.description.toLowerCase().includes(q)
+    ).slice(0, 5);
+  },
+  
+  close() {
+    this.open = false;
+    this.query = '';
+    this.results = [];
+  }
+}" @keydown.escape="close()">
+  
+  <!-- Search Trigger -->
+  <button 
+    @click="open = true; setTimeout(() => $refs.input.focus(), 50)"
+    class="flex items-center gap-2 px-3 py-1.5 text-sm text-[var(--color-text-subtle)] hover:text-[var(--color-text)] border border-[var(--color-border)] rounded-md hover:border-[var(--color-border-hover)] transition-all duration-200 bg-[var(--color-surface)]"
+    aria-label="搜索文章">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <span class="hidden sm:inline">搜索</span>
+    <kbd class="hidden md:inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] bg-[var(--color-surface-elevated)] rounded border border-[var(--color-border)] text-[var(--color-text-subtle)] ml-2">
+      <span>⌘</span><span>K</span>
+    </kbd>
+  </button>
+  
+  <!-- Search Modal -->
+  <template x-teleport="body">
+    <div 
+      x-show="open" 
+      x-transition:enter="transition ease-out duration-200" 
+      x-transition:enter-start="opacity-0" 
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-150" 
+      x-transition:leave-start="opacity-100" 
+      x-transition:leave-end="opacity-0"
+      class="fixed inset-0 z-50"
+      @click="close()">
+      
+      <!-- Backdrop -->
+      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      
+      <div 
+        class="absolute top-[20%] left-1/2 -translate-x-1/2 w-full max-w-lg px-4"
+        @click.stop>
+      
+      <!-- Search Input -->
+      <div class="bg-[var(--color-surface)] rounded-xl shadow-2xl border border-[var(--color-border)] overflow-hidden">
+        <div class="flex items-center gap-3 px-4 py-3 border-b border-[var(--color-border)]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[var(--color-text-subtle)]"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input 
+            x-ref="input"
+            x-model="query"
+            @input="search()"
+            type="text" 
+            placeholder="搜索文章..."
+            class="flex-1 bg-transparent text-[var(--color-text)] placeholder-[var(--color-text-subtle)] outline-none text-base">
+          <button 
+            @click="close()"
+            class="p-1 text-[var(--color-text-subtle)] hover:text-[var(--color-text)] transition-colors">
+            <kbd class="px-2 py-1 text-xs bg-[var(--color-surface-elevated)] rounded border border-[var(--color-border)]">ESC</kbd>
+          </button>
+        </div>
+        
+        <!-- Search Results -->
+        <div class="max-h-[60vh] overflow-y-auto">
+          <template x-if="results.length > 0">
+            <div class="py-2">
+              <template x-for="post in results" :key="post.slug">
+                <a 
+                  :href="`/posts/${post.slug}`"
+                  @click="close()"
+                  class="block px-4 py-3 hover:bg-[var(--color-surface-elevated)] transition-colors border-b border-[var(--color-border-subtle)] last:border-0">
+                  <h3 class="font-medium text-[var(--color-text)] mb-1" x-text="post.title"></h3>
+                  <p class="text-sm text-[var(--color-text-subtle)] line-clamp-1" x-text="post.description"></p>
+                  <div class="flex items-center gap-2 mt-2">
+                    <span class="text-xs px-2 py-0.5 bg-[var(--color-surface-elevated)] rounded text-[var(--color-text-subtle)]" x-text="post.category"></span>
+                    <template x-if="post.tags && post.tags.length > 0">
+                      <span class="text-xs text-[var(--color-text-muted)]" x-text="post.tags.slice(0, 3).join(', ')"></span>
+                    </template>
+                  </div>
+                </a>
+              </template>
+            </div>
+          </template>
+          
+          <template x-if="query.length >= 2 && results.length === 0">
+            <div class="px-4 py-8 text-center text-[var(--color-text-subtle)]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-3 opacity-50"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <p>未找到相关文章</p>
+            </div>
+          </template>
+          
+          <template x-if="query.length < 2">
+            <div class="px-4 py-6 text-center text-sm text-[var(--color-text-subtle)]">
+              <p>输入关键词开始搜索</p>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </template>
+</div>
+
+<!-- Keyboard Shortcut -->
+<script is:inline>
+  document.addEventListener('keydown', (e) => {
+    // Cmd/Ctrl + K to open search
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      const searchBtn = document.querySelector('[aria-label="搜索文章"]');
+      if (searchBtn) searchBtn.click();
+    }
+  });
+</script>

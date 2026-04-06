@@ -1,0 +1,94 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import PostCard from '../../components/PostCard.astro';
+import Pagination from '../../components/Pagination.astro';
+import TagList from '../../components/TagList.astro';
+import { sortPosts, filterPublished, mapToBlogPost, getCategories, getTags } from '../../utils/content';
+import { SITE, NAVIGATION } from '../../consts';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getCollection('posts');
+  const published = filterPublished(posts);
+  const sorted = sortPosts(published);
+  
+  return paginate(sorted, { pageSize: 9 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const posts = page.data;
+
+const allPosts = await getCollection('posts');
+const published = filterPublished(allPosts);
+const categories = getCategories(published);
+const tags = getTags(published);
+
+const author = {
+  id: '1',
+  name: SITE.defaultAuthor,
+  slug: 'author',
+};
+
+const baseUrl = NAVIGATION.posts;
+---
+
+<BaseLayout title="所有文章" description="浏览全部文章存档" class="pt-16">
+  <Navbar slot="header" />
+  
+  <div class="container-luxury section-padding pt-24">
+    <!-- Header -->
+    <div class="text-center mb-12 max-w-2xl mx-auto">
+      <h1 class="font-serif text-3xl md:text-4xl font-medium mb-4 text-[var(--color-text)]">所有文章</h1>
+      <p class="text-[var(--color-text-muted)]">共 {page.total} 篇文章，探索不同主题的思考与记录</p>
+    </div>
+    
+    <!-- Filter Bar -->
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 pb-6 border-b border-[var(--color-border)]">
+      <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0">
+        <a 
+          href={NAVIGATION.posts}
+          class="px-4 py-2 text-sm rounded-subtle border border-[var(--color-primary)] bg-[var(--color-primary-subtle)] text-[var(--color-primary)] whitespace-nowrap transition-all duration-300">
+          全部
+        </a>
+        {categories.slice(0, 5).map(cat => (
+          <a 
+            href={`/categories/${cat.slug}`}
+            class="px-4 py-2 text-sm rounded-subtle border border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] whitespace-nowrap transition-all duration-300">
+            {cat.name}
+          </a>
+        ))}
+      </div>
+      
+      <span class="text-sm text-[var(--color-text-subtle)] shrink-0">
+        第 {page.currentPage} / {page.lastPage} 页
+      </span>
+    </div>
+    
+    <!-- Posts Grid - Responsive -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((post, index) => (
+        <div class="animate-fade-in-up" style={`animation-delay: ${0.05 * index}s;`}>
+          <PostCard post={mapToBlogPost(post, author)} />
+        </div>
+      ))}
+    </div>
+    
+    <!-- Pagination -->
+    <Pagination 
+      currentPage={page.currentPage} 
+      totalPages={page.lastPage} 
+      baseUrl={baseUrl} 
+    />
+    
+    <!-- All Tags -->
+    <div class="mt-16 pt-8 border-t border-[var(--color-border)]">
+      <h3 class="font-serif text-lg font-medium mb-4 text-[var(--color-text)]">所有标签</h3>
+      <TagList tags={tags} />
+    </div>
+  </div>
+  
+  <Footer slot="footer" />
+</BaseLayout>
