@@ -1,7 +1,7 @@
 ---
 title: "我的全新 Astro 博客"
 description: "欢迎来到旧识桥，这是 ailmel 关于极简主义、设计与技术的个人空间。介绍旧识桥博客的技术架构，基于 Astro 构建的极简主义博客框架，融合轻奢美学与现代前端技术。"
-publishedAt: 2026-01-06
+publishedAt: 2026-04-06
 category: "项目介绍"
 tags: ["Astro", "博客", "旧识桥", "ailmel"]
 featured: true
