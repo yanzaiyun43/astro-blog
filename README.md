@@ -20,8 +20,8 @@
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/ailmel/old-bridge.git
-cd old-bridge
+git clone https://github.com/ailmel/astro.git
+cd astro
 ```
 
 ### 2. 安装依赖
@@ -52,7 +52,7 @@ npm run build
 ---
 title: "文章标题"
 description: "文章简介"
-publishedAt: 2024-01-01
+publishedAt: 2026-01-01
 category: "分类"
 tags: ["标签1", "标签2"]
 featured: true  # 是否置顶
@@ -77,7 +77,6 @@ featured: true  # 是否置顶
 - **GitHub Pages** - 自动部署（见 `.github/workflows/deploy.yml`）
 - **Cloudflare Pages** - `wrangler pages deploy dist`
 
-详细部署指南见 [DEPLOY.md](./DEPLOY.md)
 
 ## ⚙️ 配置
 
