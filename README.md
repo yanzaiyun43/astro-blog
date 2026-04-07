@@ -1,5 +1,3 @@
-# 旧识桥 - ailmel 的博客
-
 基于 Astro 5.0 + Tailwind CSS + TypeScript 构建的极简风格静态博客。
 
 ## 特性
@@ -234,8 +232,7 @@ const GISCUS_CONFIG = {
 
 ## 许可证
 
-MIT License © 2026 ailmel
-
+[MIT License](LICENSE)
 ---
 
 欢迎 Star ⭐ 和 Fork！
