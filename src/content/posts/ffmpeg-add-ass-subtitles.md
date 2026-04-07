@@ -19,12 +19,11 @@ featured: false
 
 1. **安装 FFmpeg**：在终端输入 ffmpeg -version 验证是否安装；若未安装，可从 FFmpeg 官网下载
 
-2. [FFmpeg 官网](link="https://ffmpeg.org")
+2. **文件准备**：将视频文件（如 scene.mp4）与 ASS 字幕文件（如 scene.ass）放入同一目录。
 
-3. **文件准备**：将视频文件（如 scene.mp4）与 ASS 字幕文件（如 scene.ass）放入同一目录。
+3. **文件名规范**：文件名主体保持一致（仅后缀不同），避免路径问题。
 
-4. **文件名规范**：文件名主体保持一致（仅后缀不同），避免路径问题。
-
+[FFmpeg 官网](link="https://ffmpeg.org")
 ## 执行命令
 
 在文件所在目录打开终端，运行以下命令：
