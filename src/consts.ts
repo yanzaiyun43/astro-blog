@@ -46,7 +46,7 @@ export const HERO_TYPEWRITER = {
 } as const;
 
 export const META = {
-  keywords: ['博客', '技术', '设计', '生活', 'ailmel'],
+  keywords: ['博客', '技术', '设计', '生活', "旧识桥", "旧识桥博客", "技术分享", "开源阅读", "ailmel官网", "ailmel博客", "ailmel","Astro"],
   author: SITE.defaultAuthor,
   robots: 'index, follow',
   themeColor: '#f0f9ff',
