@@ -9,14 +9,17 @@ import Pagination from '../../components/Pagination.astro';
 import TagList from '../../components/TagList.astro';
 import SearchData from '../../components/SearchData.astro';
 import { sortPosts, filterPublished, mapToBlogPost, getCategories, getTags } from '../../utils/content';
-import { SITE, NAVIGATION, HERO_TYPEWRITER } from '../../consts';
+import { SITE, NAVIGATION, HERO_TYPEWRITER, BLOG_CONFIG } from '../../consts';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getCollection('posts');
   const published = filterPublished(posts);
   const sorted = sortPosts(published);
   
-  return paginate(sorted, { pageSize: 9 });
+  // 分页时排除置顶文章，置顶文章单独显示
+  const nonFeaturedPosts = sorted.filter(p => !p.data.featured);
+  
+  return paginate(nonFeaturedPosts, { pageSize: BLOG_CONFIG.postsPerPage });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
@@ -31,8 +34,8 @@ const tags = getTags(published);
 const sortedAll = sortPosts(published);
 const featuredPosts = sortedAll.filter(p => p.data.featured).slice(0, 2);
 
-// 当前页的普通文章（排除置顶文章）
-const regularPosts = posts.filter(p => !p.data.featured || !featuredPosts.find(fp => fp.id === p.id));
+// 当前页的普通文章
+const regularPosts = posts;
 
 const author = {
   id: '1',

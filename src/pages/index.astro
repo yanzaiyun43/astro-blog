@@ -8,21 +8,24 @@ import TagList from '../components/TagList.astro';
 import SearchData from '../components/SearchData.astro';
 import { getCollection } from 'astro:content';
 import { sortPosts, filterPublished, mapToBlogPost, getCategories, getTags } from '../utils/content';
-import { SITE, NAVIGATION, HERO_TYPEWRITER } from '../consts';
+import { SITE, NAVIGATION, HERO_TYPEWRITER, BLOG_CONFIG } from '../consts';
 
 const posts = await getCollection('posts');
 const published = filterPublished(posts);
 const sorted = sortPosts(published);
 
 // 分页逻辑
-const postsPerPage = 9;
+const postsPerPage = BLOG_CONFIG.postsPerPage;
 const currentPage = 1;
 const totalPages = Math.ceil(sorted.length / postsPerPage);
-const displayPosts = sorted.slice(0, postsPerPage);
 
 // 置顶文章（最多2篇）
 const featuredPosts = sorted.filter(p => p.data.featured).slice(0, 2);
-const regularPosts = displayPosts.filter(p => !p.data.featured || !featuredPosts.find(fp => fp.id === p.id));
+
+// 普通文章（排除置顶文章后分页）
+const regularSorted = sorted.filter(p => !p.data.featured);
+const displayPosts = regularSorted.slice(0, postsPerPage);
+const regularPosts = displayPosts;
 
 // 分类和标签
 const categories = getCategories(published);
@@ -35,7 +38,7 @@ const author = {
 };
 ---
 
-<BaseLayout class="pt-16">
+<BaseLayout title={`${SITE.name} | ${SITE.title}`} class="pt-16">
   <Navbar slot="header" />
   
   <div class="w-full">

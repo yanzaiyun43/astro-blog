@@ -3,12 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
-import { filterPublished, sortPosts, generateSlug } from '../utils/content';
-import { SITE } from '../consts';
+import { filterPublished, generateSlug } from '../utils/content';
 
 const posts = await getCollection('posts');
 const published = filterPublished(posts);
-const sorted = sortPosts(published);
+// 归档页按时间倒序排列，不区分置顶
+const sorted = published.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
 
 // 为每篇文章生成 slug
 const postsWithSlug = sorted.map(post => ({
