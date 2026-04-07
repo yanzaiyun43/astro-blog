@@ -7,13 +7,11 @@
 - **极简设计** - 柔和浅蓝/浅灰/米白配色，细线条贯穿，无多余装饰
 - **流畅动画** - 页面淡入、卡片微动效、平滑过渡，时长精心调校
 - **完美响应式** - 适配手机/平板/桌面，触摸优化
-- **暗色模式** - 手动切换，平滑过渡
 - **轻量搜索** - 客户端实时搜索，⌘K 快捷键
 - **Giscus 评论** - GitHub Discussions 驱动，极简风格
 - **SEO 优化** - 自动生成 sitemap、RSS、OG 标签、JSON-LD 结构化数据
-- **运行天数** - 自动计算网站运行天数
 - **文章归档** - 按年份时间轴展示所有文章
-- **置顶文章** - 首页突出显示置顶内容
+- **置顶文章** - 支持 `featured` 和 `pinned` 两种置顶方式
 - **随机封面** - 未设置封面时自动随机选取
 - **打字机效果** - 首页 Hero 区域动态文字效果
 - **高性能** - 静态生成，图片优化，Prefetch 预加载
@@ -90,55 +88,18 @@ slug: "custom-url"           # 可选：自定义URL路径
 ```
 astro/
 ├── public/                # 静态资源
-│   ├── avatar.png        # 头像
-│   ├── favicon.svg       # SVG 图标
-│   ├── favicon.ico       # ICO 图标
-│   ├── robots.txt        # SEO 爬虫规则
-│   └── fonts/            # 字体文件
 ├── src/
-│   ├── assets/           # 资源文件（封面图片等）
-│   ├── components/       # Astro 组件
-│   │   ├── Navbar.astro      # 导航栏
-│   │   ├── Footer.astro      # 页脚
-│   │   ├── PostCard.astro    # 文章卡片
-│   │   ├── SEO.astro         # SEO 组件
-│   │   ├── JsonLd.astro      # JSON-LD 结构化数据
-│   │   ├── Giscus.astro      # Giscus 评论
-│   │   ├── Search.astro      # 搜索组件
-│   │   ├── SearchData.astro  # 搜索数据注入
-│   │   ├── Pagination.astro  # 分页组件
-│   │   ├── TagList.astro     # 标签列表
-│   │   ├── ThemeToggle.astro # 主题切换
-│   │   └── HeaderLink.astro  # 导航链接
-│   ├── content/          # 内容集合
-│   │   └── posts/        # 文章内容（.md/.mdx）
+│   ├── assets/           # 封面图片等资源
+│   ├── components/       # UI 组件
+│   ├── content/          # 文章内容（.md/.mdx）
 │   ├── layouts/          # 布局模板
-│   │   ├── BaseLayout.astro  # 基础布局
-│   │   └── PostLayout.astro  # 文章页布局
 │   ├── pages/            # 页面路由
-│   │   ├── index.astro        # 首页
-│   │   ├── archive.astro      # 归档页
-│   │   ├── friends.astro      # 友链页
-│   │   ├── about.astro        # 关于页
-│   │   ├── 404.astro          # 404 页面
-│   │   ├── rss.xml.js         # RSS 订阅
-│   │   ├── posts/             # 文章列表/详情页
-│   │   │   ├── [...page].astro    # 文章列表（分页）
-│   │   │   └── [...slug].astro    # 文章详情页
-│   │   ├── categories/        # 分类页
-│   │   │   └── [slug].astro
-│   │   └── tags/              # 标签页
-│   │       └── [slug].astro
-│   ├── styles/           # 样式文件
-│   │   └── global.css   # 全局样式
+│   ├── styles/           # 全局样式
 │   ├── utils/            # 工具函数
-│   │   └── content.ts   # 内容处理
-│   ├── consts.ts        # 配置常量
-│   ├── types.ts         # TypeScript 类型定义
-│   └── content.config.ts # 内容集合配置
-├── astro.config.mjs     # Astro 配置
-├── tailwind.config.js    # Tailwind 配置
-├── tsconfig.json         # TypeScript 配置
+│   ├── consts.ts         # 站点配置
+│   ├── types.ts          # 类型定义
+│   └── content.config.ts # 内容配置
+├── astro.config.mjs      # Astro 配置
 └── package.json          # 项目依赖
 ```
 
@@ -218,11 +179,16 @@ export const SOCIAL_LINKS = {
 ```typescript
 export const BLOG_CONFIG = {
   postsPerPage: 10,           // 每页文章数
-  featuredPostsCount: 2,      // 置顶文章数量
+  featuredPostsCount: 2,      // 置顶文章数量（首页置顶区域显示的文章数）
   dateFormat: 'yyyy-MM-dd',
   readingSpeed: 300,          // 每分钟阅读字数
 };
 ```
+
+**置顶文章说明：**
+- `featured: true` - 置顶文章，按时间排序，最新的在前
+- `pinned: true` - 固定置顶，始终排在最前面（不受时间影响）
+- 超过 `featuredPostsCount` 数量的置顶文章会显示在普通文章列表中
 
 ### 首页打字机效果
 

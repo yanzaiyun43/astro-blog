@@ -1,6 +1,6 @@
 ---
 title: "如何使用这个 Astro 博客主题"
-description: "详细介绍如何安装、配置和使用这个基于 Astro 的极简轻奢博客主题，包括文章写作、自定义配置和部署上线"
+description: "详细介绍如何安装、配置和使用这个基于 Astro 的极简博客主题，包括文章写作、自定义配置和部署上线"
 publishedAt: 2026-04-07
 category: "教程"
 tags: ["Astro", "博客", "使用指南", "主题"]
