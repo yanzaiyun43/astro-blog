@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import type { BlogPost } from '../types';
 import { formatDate, estimateReadingTime, countWords } from '../utils/content';
 import Giscus from '../components/Giscus.astro';
+import { SITE } from '../consts';
 
 interface Props {
   post: BlogPost;
@@ -15,6 +16,46 @@ const { post, headings = [], relatedPosts = [] } = Astro.props;
 const readingTime = estimateReadingTime(post.content);
 const wordCount = countWords(post.content);
 const hasToc = headings.filter(h => h.depth <= 3).length > 0;
+
+// 构建 Article Schema
+const articleSchema = {
+  '@type': 'Article' as const,
+  headline: post.title,
+  description: post.description,
+  url: `${SITE.url}/posts/${post.slug}`,
+  datePublished: post.publishedAt.toISOString(),
+  dateModified: post.updatedAt?.toISOString() || post.publishedAt.toISOString(),
+  author: {
+    '@type': 'Person' as const,
+    name: post.author.name,
+  },
+  publisher: {
+    '@type': 'Person' as const,
+    name: SITE.defaultAuthor,
+  },
+  image: post.cover?.src ? `${SITE.url}${post.cover.src}` : undefined,
+  keywords: post.tags.map(t => t.name),
+  articleSection: post.category?.name,
+};
+
+// 构建 BreadcrumbList Schema
+const breadcrumbSchema = {
+  '@type': 'BreadcrumbList' as const,
+  itemListElement: [
+    {
+      '@type': 'ListItem' as const,
+      position: 1,
+      name: '首页',
+      item: SITE.url,
+    },
+    {
+      '@type': 'ListItem' as const,
+      position: 2,
+      name: post.title,
+      item: `${SITE.url}/posts/${post.slug}`,
+    },
+  ],
+};
 ---
 
 <BaseLayout 
@@ -26,6 +67,7 @@ const hasToc = headings.filter(h => h.depth <= 3).length > 0;
   modifiedDate={post.updatedAt}
   tags={post.tags.map(t => t.name)}
   class="w-full pt-16"
+  jsonLdSchema={[articleSchema, breadcrumbSchema]}
 >
   <div slot="header">
     <slot name="header" />

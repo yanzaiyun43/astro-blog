@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { SITE } from '../consts';
 import SEO from '../components/SEO.astro';
 import SearchData from '../components/SearchData.astro';
+import JsonLd from '../components/JsonLd.astro';
 
 interface Props {
   title?: string;
@@ -13,6 +14,7 @@ interface Props {
   modifiedDate?: Date;
   tags?: string[];
   class?: string;
+  jsonLdSchema?: any;
 }
 
 const { 
@@ -23,8 +25,26 @@ const {
   publishDate,
   modifiedDate,
   tags,
-  class: className = ''
+  class: className = '',
+  jsonLdSchema
 } = Astro.props;
+
+// 默认 WebSite Schema
+const defaultWebSiteSchema = {
+  '@type': 'WebSite' as const,
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description,
+  author: {
+    '@type': 'Person' as const,
+    name: SITE.defaultAuthor,
+  },
+};
+
+// 合并 schema
+const finalSchema = jsonLdSchema 
+  ? (Array.isArray(jsonLdSchema) ? [defaultWebSiteSchema, ...jsonLdSchema] : [defaultWebSiteSchema, jsonLdSchema])
+  : defaultWebSiteSchema;
 ---
 
 <!DOCTYPE html>
@@ -39,6 +59,9 @@ const {
       modifiedDate={modifiedDate}
       tags={tags}
     />
+    
+    <!-- JSON-LD Structured Data -->
+    <JsonLd schema={finalSchema} />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

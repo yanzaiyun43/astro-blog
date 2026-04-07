@@ -1,0 +1,92 @@
+---
+// Schema.org 类型定义
+type WebSiteSchema = {
+  '@type': 'WebSite';
+  name: string;
+  url: string;
+  description?: string;
+  author?: {
+    '@type': 'Person';
+    name: string;
+  };
+};
+
+type ArticleSchema = {
+  '@type': 'Article';
+  headline: string;
+  description?: string;
+  url: string;
+  datePublished: string;
+  dateModified?: string;
+  author: {
+    '@type': 'Person';
+    name: string;
+  };
+  publisher?: {
+    '@type': 'Organization' | 'Person';
+    name: string;
+    logo?: {
+      '@type': 'ImageObject';
+      url: string;
+    };
+  };
+  image?: string;
+  keywords?: string[];
+  articleSection?: string;
+};
+
+type BreadcrumbItem = {
+  name: string;
+  url: string;
+};
+
+type BreadcrumbListSchema = {
+  '@type': 'BreadcrumbList';
+  itemListElement: {
+    '@type': 'ListItem';
+    position: number;
+    name: string;
+    item: string;
+  }[];
+};
+
+type PersonSchema = {
+  '@type': 'Person';
+  name: string;
+  url?: string;
+  description?: string;
+  image?: string;
+  sameAs?: string[];
+};
+
+type SchemaType = WebSiteSchema | ArticleSchema | BreadcrumbListSchema | PersonSchema;
+
+interface Props {
+  schema: SchemaType | SchemaType[];
+}
+
+const { schema } = Astro.props;
+
+// 构建完整的 JSON-LD 对象
+const buildJsonLd = (schema: SchemaType | SchemaType[]) => {
+  const base = {
+    '@context': 'https://schema.org',
+  };
+
+  if (Array.isArray(schema)) {
+    return {
+      ...base,
+      '@graph': schema,
+    };
+  }
+
+  return {
+    ...base,
+    ...schema,
+  };
+};
+
+const jsonLdString = JSON.stringify(buildJsonLd(schema), null, 0);
+---
+
+<script type="application/ld+json" is:inline set:html={jsonLdString} />
