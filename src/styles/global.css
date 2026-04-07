@@ -349,6 +349,7 @@ img {
   font-size: 0.875rem;
   line-height: 1.7;
   font-weight: 400;
+  color: inherit;
 }
 
 /* 覆盖 Shiki 在 pre 标签上设置的默认颜色 */
@@ -375,7 +376,21 @@ img {
   font-size: 0.9375rem;
   display: block;
   overflow-x: auto;
-  white-space: nowrap;
+}
+
+/* 表格容器，用于移动端横向滚动 */
+.prose .table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+}
+
+.prose .table-wrapper table {
+  margin: 0;
+  border: none;
+  display: table;
 }
 
 .prose th, .prose td {

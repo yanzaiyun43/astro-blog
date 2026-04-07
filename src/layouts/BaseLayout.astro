@@ -74,13 +74,27 @@ const finalSchema = jsonLdSchema
     <!-- Code copy buttons -->
     <script is:inline>
       document.addEventListener('DOMContentLoaded', function() {
+        // 为所有表格添加滚动容器
+        const tables = document.querySelectorAll('.prose table');
+        tables.forEach(function(table) {
+          // 如果表格已经在 table-wrapper 中，跳过
+          if (table.parentElement?.classList.contains('table-wrapper')) return;
+          
+          const wrapper = document.createElement('div');
+          wrapper.className = 'table-wrapper';
+          table.parentNode.insertBefore(wrapper, table);
+          wrapper.appendChild(table);
+        });
+        
         // 为所有代码块添加复制按钮
         const codeBlocks = document.querySelectorAll('pre');
         codeBlocks.forEach(function(pre) {
           // 创建复制按钮容器
           const wrapper = document.createElement('div');
           wrapper.className = 'code-copy-wrapper absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300';
-          wrapper.innerHTML = '<button class="code-copy-btn p-1.5 rounded-subtle bg-[var(--color-surface)]/90 backdrop-blur-sm border border-[var(--color-border)] text-[var(--color-text-subtle)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-all duration-300" aria-label="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>';
+          wrapper.innerHTML = '<button class="code-copy-btn w-16 p-1.5 rounded-subtle bg-[var(--color-surface)]/90 backdrop-blur-sm border border-[var(--color-border)] text-[var(--color-text-subtle)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-all duration-300 flex items-center justify-center" aria-label="复制代码"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button>';
+          
+
           
           // 确保 pre 有 relative 和 group 类
           pre.classList.add('relative', 'group');
@@ -91,10 +105,14 @@ const finalSchema = jsonLdSchema
           btn.addEventListener('click', function() {
             const code = pre.querySelector('code')?.textContent || '';
             navigator.clipboard.writeText(code).then(function() {
-              btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+              // 改变按钮为文字提示
+              const originalContent = btn.innerHTML;
+              btn.innerHTML = '<span class="text-xs font-medium px-1 whitespace-nowrap">复制成功</span>';
               btn.classList.add('!text-[var(--color-primary)]', '!border-[var(--color-primary)]');
+              
+              // 2秒后恢复
               setTimeout(function() {
-                btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>';
+                btn.innerHTML = originalContent;
                 btn.classList.remove('!text-[var(--color-primary)]', '!border-[var(--color-primary)]');
               }, 2000);
             });

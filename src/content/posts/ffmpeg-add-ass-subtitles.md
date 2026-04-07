@@ -55,8 +55,16 @@ ffmpeg -i scene.mp4 -vf "ass=scene.ass" -c:a copy output.mp4
 
 **软字幕**是将字幕作为独立流封装在容器内（如 MP4 MKV），播放时由播放器加载，可开关、可切换语言。添加软字幕的命令示例：
 ```bash
-ffmpeg -i video.mp4 -i subtitle.ass -c copy output.mkv  
+ffmpeg -i video.mp4 -i subtitle.ass -c copy output.mkv
 ```
 MP4 容器对软字幕支持有限，推荐使用 MKV 格式。
+
+|     |     |
+| --- | --- |
+| **问题现象** | **可能原因与解决方法** |
+| `File for filter 'ass' not found` | 字幕文件名拼写错误、后缀非 .ass，或未与视频同目录。 |
+| 字幕显示为方框/乱码 | 系统缺少 ASS 指定字体，安装对应字体或修改字幕使用通用字体（如思源黑体）。 |
+| 输出视频无法播放 | 尝试显式指定编码器：`-c:v libx264 -crf 23` |
+| 音频异常或缺失 | 可以尝试移除 `-c:a copy` 或改为 `-c:a aac` 让 FFmpeg 重新编码音频。 |
 
 > 这个方法简洁稳定，适合单文件快速处理。
