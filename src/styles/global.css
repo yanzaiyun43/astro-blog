@@ -51,27 +51,6 @@
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* 深色模式：柔和暗色 */
-.dark {
-  --color-bg: #1c1917;
-  --color-surface: #292524;
-  --color-surface-elevated: #44403c;
-  --color-surface-hover: #57534e;
-  
-  --color-text: #f5f5f4;
-  --color-text-muted: #a8a29e;
-  --color-text-subtle: #78716c;
-  
-  --color-border: #44403c;
-  --color-border-subtle: #57534e;
-  --color-border-hover: #78716c;
-  
-  --color-primary: #38bdf8;
-  --color-primary-hover: #7dd3fc;
-  --color-primary-subtle: #0c4a6e;
-  --color-primary-muted: #075985;
-}
-
 /* ==========================================
    基础重置
    ========================================== */
@@ -364,22 +343,17 @@ img {
   position: relative;
 }
 
-.dark .prose pre {
-  background: #1e1e1e;
-  border-color: #333;
-}
-
 .prose pre code {
   background: transparent;
   padding: 0;
-  color: #24292f;
   font-size: 0.875rem;
   line-height: 1.7;
   font-weight: 400;
 }
 
-.dark .prose pre code {
-  color: #e6edf3;
+/* 覆盖 Shiki 在 pre 标签上设置的默认颜色 */
+.prose pre[class*="shiki"] {
+  color: transparent !important;
 }
 
 .prose img {

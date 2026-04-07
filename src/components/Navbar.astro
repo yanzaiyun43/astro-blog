@@ -1,6 +1,5 @@
 ---
 import { SITE, NAVIGATION } from '../consts';
-import ThemeToggle from './ThemeToggle.astro';
 import Search from './Search.astro';
 
 const navItems = [
@@ -38,8 +37,6 @@ const navItems = [
       <div class="w-px h-4 bg-[var(--color-border)]"></div>
       
       <Search />
-      
-      <ThemeToggle />
     </div>
     
     <!-- Mobile Menu Button -->
@@ -78,10 +75,7 @@ const navItems = [
         </a>
       ))}
       
-      <div class="pt-4 flex items-center justify-between">
-        <span class="text-sm text-[var(--color-text-subtle)]">主题</span>
-        <ThemeToggle />
-      </div>
+
     </div>
   </div>
 </header>
