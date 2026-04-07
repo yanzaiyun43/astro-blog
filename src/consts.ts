@@ -1,6 +1,6 @@
 export const SITE = {
   name: '旧识桥',
-  title: '旧识桥',
+  title: '什么都略懂一点，生活更多彩一些',
   description: '我是ailmel，这里是旧识桥博客，博客内有技术分享与生活记录。在这里，你可以找到关于前端开发、博客搭建等实用内容，也能读到随性的日常随笔。希望每一位访客都能有所收获。',
   url: 'https://ailmel.top',
   defaultAuthor: 'ailmel',
