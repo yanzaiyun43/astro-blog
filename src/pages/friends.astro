@@ -71,6 +71,19 @@ const friends: Friend[] = [
   },
 ];
 
+// Fisher-Yates 洗牌算法 - 随机排序友链
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+// 随机排序后的友链列表
+const shuffledFriends = shuffleArray(friends);
+
 // 本站信息 - 用于展示给想交换友链的人
 const applyInfo = {
   name: SITE.name,
@@ -99,9 +112,9 @@ const applyInfo = {
     </div>
     
     <!-- Friends Grid -->
-    {friends.length > 0 ? (
+    {shuffledFriends.length > 0 ? (
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-        {friends.map(friend => (
+        {shuffledFriends.map(friend => (
           <a 
             href={friend.url}
             target="_blank"
