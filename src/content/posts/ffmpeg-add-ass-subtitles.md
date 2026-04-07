@@ -19,7 +19,7 @@ featured: false
 
 1. **安装 FFmpeg**：在终端输入 ffmpeg -version 验证是否安装；若未安装，可从 FFmpeg 官网下载
 
-::btn[FFmpeg 官网]{link="https://ffmpeg.org"}
+[FFmpeg 官网](link="https://ffmpeg.org")
 
 2. **文件准备**：将视频文件（如 scene.mp4）与 ASS 字幕文件（如 scene.ass）放入同一目录。
 
@@ -29,7 +29,7 @@ featured: false
 
 在文件所在目录打开终端，运行以下命令：
 
-```
+```bash
 ffmpeg -i scene.mp4 -vf "ass=scene.ass" -c:a copy output.mp4  
 ```
 
@@ -54,7 +54,7 @@ ffmpeg -i scene.mp4 -vf "ass=scene.ass" -c:a copy output.mp4
 ### 软字幕（封装字幕）
 
 **软字幕**是将字幕作为独立流封装在容器内（如 MP4 MKV），播放时由播放器加载，可开关、可切换语言。添加软字幕的命令示例：
-```
+```bash
 ffmpeg -i video.mp4 -i subtitle.ass -c copy output.mkv  
 ```
 MP4 容器对软字幕支持有限，推荐使用 MKV 格式。
