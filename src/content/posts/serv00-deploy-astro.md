@@ -39,31 +39,31 @@ featured: false
 
 ### 1. 进入域名根目录
 
-```
+```bash
 cd ~/domains/你的域名
 ```
 
 ### 2. 拉取 Astro 博客主题模板
 
-```
+```bash
 npm create astro@latest -- --template uxiaohan/vhAstro-Theme astro-blog --yes
 ```
 
 ### 3. 进入项目目录
 
-```
+```bash
 cd astro-blog
 ```
 
 ### 4. 安装项目依赖
 
-```
+```bash
 npm install
 ```
 
 ### 5. 构建生成静态文件（dist）
 
-```
+```bash
 npm run build
 ```
 
@@ -76,19 +76,19 @@ Serv00 上Node.js站点的默认运行目录为：
 
 ### 1. 清空目标目录（避免旧文件冲突）
 
-```
+```bash
 rm -rf ~/domains/你的域名/public_nodejs/public/*
 ```
 
 ### 2. 复制打包好的博客文件
 
-```
+```bash
 cp -rf dist/* ~/domains/你的域名/public_nodejs/public/
 ```
 
 ### 3. 修复权限（没有问题可忽略）
 
-```
+```bash
 chmod -R 755 ~/domains/你的域名/public_nodejs/public
 find ~/domains/你的域名/public_nodejs/public -type f -exec chmod 644 {} \;
 ```
