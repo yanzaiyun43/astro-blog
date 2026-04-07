@@ -19,8 +19,8 @@
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/ailmel/astro-blog.git
-cd astro
+git clone https://github.com/yanzaiyun43/astro-blog.git
+cd astro-blog
 ```
 
 ### 2. 安装依赖
