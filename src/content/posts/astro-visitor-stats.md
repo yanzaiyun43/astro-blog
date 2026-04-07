@@ -31,7 +31,7 @@ featured: false
 
 在你的 PHP 环境根目录（如 `public_html/`）新建 `visit.php` 文件，复制以下完整代码：
 
-```
+```php
 <?php
 // 允许跨域（上线后替换为你的域名，如 https://你的博客域名）
 header("Access-Control-Allow-Origin: *");
