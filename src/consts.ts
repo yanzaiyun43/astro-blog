@@ -7,7 +7,6 @@ export const SITE = {
   defaultAuthor: 'ailmel',
   language: 'zh-CN',
   charset: 'UTF-8',
-  ogImage: '/og-image.jpg',
   favicon: {
     svg: '/favicon.svg',
     ico: '/favicon.ico',
