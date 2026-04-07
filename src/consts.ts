@@ -32,6 +32,7 @@ export const SOCIAL_LINKS = {
 
 export const BLOG_CONFIG = {
   postsPerPage: 10,
+  featuredPostsCount: 2, // 置顶文章数量
   dateFormat: 'yyyy-MM-dd',
   readingSpeed: 300, // 每分钟阅读字数
 } as const;

@@ -18,7 +18,10 @@ const posts = defineCollection({
 			tags: z.array(z.string()).default([]),
 			draft: z.boolean().default(false),
 			featured: z.boolean().default(false),
-			slug: z.string().optional(),
+			pinned: z.boolean().default(false),
+			slug: z.string()
+				.regex(/^[a-zA-Z0-9_-]+$/, 'slug 只能包含字母、数字、下划线和连字符')
+				.optional(),
 		}),
 });
 

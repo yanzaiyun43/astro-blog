@@ -16,10 +16,18 @@ export const getStaticPaths = (async ({ paginate }) => {
   const published = filterPublished(posts);
   const sorted = sortPosts(published);
   
-  // 分页时排除置顶文章，置顶文章单独显示
+  // 所有置顶文章（包括 pinned 和 featured）
+  const allFeaturedPosts = sorted.filter(p => p.data.featured || p.data.pinned);
+  // 超过限制的置顶文章需要显示在分页列表中
+  const excessFeaturedPosts = allFeaturedPosts.slice(BLOG_CONFIG.featuredPostsCount);
+  // 非置顶文章
   const nonFeaturedPosts = sorted.filter(p => !p.data.featured);
+  // 合并多余的置顶文章和普通文章，然后按发布时间倒序排序
+  const paginatedPosts = [...excessFeaturedPosts, ...nonFeaturedPosts].sort(
+    (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
+  );
   
-  return paginate(nonFeaturedPosts, { pageSize: BLOG_CONFIG.postsPerPage });
+  return paginate(paginatedPosts, { pageSize: BLOG_CONFIG.postsPerPage });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
@@ -32,7 +40,7 @@ const tags = getTags(published);
 
 // 置顶文章（最多2篇）- 所有页面都显示
 const sortedAll = sortPosts(published);
-const featuredPosts = sortedAll.filter(p => p.data.featured).slice(0, 2);
+const featuredPosts = sortedAll.filter(p => p.data.featured).slice(0, BLOG_CONFIG.featuredPostsCount);
 
 // 当前页的普通文章
 const regularPosts = posts;
@@ -142,9 +150,6 @@ const baseUrl = NAVIGATION.posts;
           <div class="flex items-center gap-3 mb-8">
             <span class="w-8 h-px bg-[var(--color-text-subtle)]"></span>
             <h2 class="font-serif text-xl font-medium text-[var(--color-text)]">最新文章</h2>
-            <span class="text-sm text-[var(--color-text-subtle)] ml-auto">
-              第 {page.currentPage} / {page.lastPage} 页
-            </span>
           </div>
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">

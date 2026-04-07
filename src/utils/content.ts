@@ -59,8 +59,13 @@ export function generateSlug(text: string): string {
 // 文章排序（置顶优先，时间倒序）
 export function sortPosts(posts: CollectionEntry<'posts'>[]): CollectionEntry<'posts'>[] {
   return posts.sort((a, b) => {
+    // pinned 文章始终排在最前面
+    if (a.data.pinned && !b.data.pinned) return -1;
+    if (!a.data.pinned && b.data.pinned) return 1;
+    // 其次按 featured 排序
     if (a.data.featured && !b.data.featured) return -1;
     if (!a.data.featured && b.data.featured) return 1;
+    // 最后按发布时间倒序
     return b.data.publishedAt.getTime() - a.data.publishedAt.getTime();
   });
 }

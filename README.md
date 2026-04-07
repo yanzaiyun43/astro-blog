@@ -62,6 +62,7 @@ category: "分类"              # 可选：分类（默认"未分类"）
 tags: ["标签1", "标签2"]      # 可选：标签列表
 draft: false                 # 可选：草稿模式（默认false）
 featured: true               # 可选：置顶文章（默认false）
+pinned: true                 # 可选：固定置顶（始终排在最前，默认false）
 slug: "custom-url"           # 可选：自定义URL路径
 ---
 
@@ -81,7 +82,8 @@ slug: "custom-url"           # 可选：自定义URL路径
 | `tags` | - | array | 标签列表，如：`["标签1", "标签2"]` |
 | `draft` | - | boolean | 草稿模式，设为true则不发布 |
 | `featured` | - | boolean | 置顶文章，设为true则在首页突出显示 |
-| `slug` | - | string | 自定义URL路径，如：`my-post` |
+| `pinned` | - | boolean | 固定置顶，设为true则始终排在最前面 |
+| `slug` | - | string | 自定义URL路径（只能包含字母、数字、下划线和连字符） |
 
 ## 项目结构
 
@@ -215,9 +217,10 @@ export const SOCIAL_LINKS = {
 
 ```typescript
 export const BLOG_CONFIG = {
-  postsPerPage: 10,       // 首页每页文章数
+  postsPerPage: 10,           // 每页文章数
+  featuredPostsCount: 2,      // 置顶文章数量
   dateFormat: 'yyyy-MM-dd',
-  readingSpeed: 300,      // 每分钟阅读字数
+  readingSpeed: 300,          // 每分钟阅读字数
 };
 ```
 

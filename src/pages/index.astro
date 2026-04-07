@@ -14,16 +14,24 @@ const posts = await getCollection('posts');
 const published = filterPublished(posts);
 const sorted = sortPosts(published);
 
-// 分页逻辑
+// 所有置顶文章（包括 pinned 和 featured）
+const allFeaturedPosts = sorted.filter(p => p.data.featured || p.data.pinned);
+// 首页显示的置顶文章（最多featuredPostsCount篇）
+const featuredPosts = allFeaturedPosts.slice(0, BLOG_CONFIG.featuredPostsCount);
+// 超过限制的置顶文章需要显示在普通文章列表中
+const excessFeaturedPosts = allFeaturedPosts.slice(BLOG_CONFIG.featuredPostsCount);
+
+// 普通文章（排除首页显示的置顶文章）
+const nonFeaturedPosts = sorted.filter(p => !p.data.featured);
+// 合并多余的置顶文章和普通文章，然后按发布时间倒序排序
+const regularSorted = [...excessFeaturedPosts, ...nonFeaturedPosts].sort(
+  (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
+);
+
+// 分页逻辑 - 基于非置顶文章计算
 const postsPerPage = BLOG_CONFIG.postsPerPage;
 const currentPage = 1;
-const totalPages = Math.ceil(sorted.length / postsPerPage);
-
-// 置顶文章（最多2篇）
-const featuredPosts = sorted.filter(p => p.data.featured).slice(0, 2);
-
-// 普通文章（排除置顶文章后分页）
-const regularSorted = sorted.filter(p => !p.data.featured);
+const totalPages = Math.ceil(regularSorted.length / postsPerPage);
 const displayPosts = regularSorted.slice(0, postsPerPage);
 const regularPosts = displayPosts;
 

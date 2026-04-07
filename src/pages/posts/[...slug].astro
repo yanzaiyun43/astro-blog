@@ -8,10 +8,25 @@ import { SITE } from '../../consts';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
-  return posts.map((post) => ({
-    params: { slug: post.id.replace(/\.mdx?$/, '').replace(/\/index$/, '') },
-    props: post,
-  }));
+  const slugMap = new Map<string, string>();
+  
+  const paths = posts.map((post) => {
+    const slug = post.data.slug || post.id.replace(/\.mdx?$/, '').replace(/\/index$/, '');
+    
+    // 检测 slug 冲突
+    if (slugMap.has(slug)) {
+      console.warn(`[警告] slug 冲突: "${slug}" 被多篇文章使用 (${slugMap.get(slug)} 和 ${post.id})`);
+    } else {
+      slugMap.set(slug, post.id);
+    }
+    
+    return {
+      params: { slug },
+      props: post,
+    };
+  });
+  
+  return paths;
 }
 
 type Props = CollectionEntry<'posts'>;

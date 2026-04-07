@@ -4,7 +4,7 @@ description: "Astro 是专为内容型网站设计的静态站点生成器（SSG
 publishedAt: 2026-01-07
 category: "教程"
 tags: ["Astro", "架构设计", "性能优化"]
-featured: true
+featured: false
 ---
 
 > Astro 是专为**内容型网站**设计的静态站点生成器（SSG），用最少的 JavaScript 交付最快的页面。

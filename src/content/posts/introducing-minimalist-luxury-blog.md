@@ -5,6 +5,7 @@ publishedAt: 2026-04-06
 category: "项目介绍"
 tags: ["Astro", "博客", "旧识桥", "ailmel"]
 featured: true
+pinned: true
 ---
 
 ## 博客缘起

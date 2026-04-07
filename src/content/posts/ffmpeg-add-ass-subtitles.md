@@ -55,7 +55,7 @@ ffmpeg -i scene.mp4 -vf "ass=scene.ass" -c:a copy output.mp4
 
 **软字幕**是将字幕作为独立流封装在容器内（如 MP4 MKV），播放时由播放器加载，可开关、可切换语言。添加软字幕的命令示例：
 ```bash
-ffmpeg -i video.mp4 -i subtitle.ass -c copy output.mkv
+ffmpeg -i video.mp4 -i subtitle.ass -c copy output.mkv  
 ```
 MP4 容器对软字幕支持有限，推荐使用 MKV 格式。
 
