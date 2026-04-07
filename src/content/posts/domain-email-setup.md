@@ -54,7 +54,7 @@ featured: false
     - 安装 Docker 和 Docker Compose。
         - Ubuntu 示例命令：
 
-```
+```bash
 sudo apt update
 sudo apt install docker.io docker-compose
 ```
@@ -64,7 +64,7 @@ sudo apt install docker.io docker-compose
     - 根据官方文档修改配置文件，设置域名和管理员密码。
     - 启动服务：
 
-```
+```bash
 docker-compose up -d
 ```
 
