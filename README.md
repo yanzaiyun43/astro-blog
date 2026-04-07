@@ -18,7 +18,7 @@
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/ailmel/astro.git
+git clone https://github.com/ailmel/astro-blog.git
 cd astro
 ```
 
