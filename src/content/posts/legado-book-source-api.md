@@ -90,7 +90,7 @@ echo json_encode($response);
 
 > 其他设置➡️直链上传规则➡️粘贴规则
 
-```
+```json
 {
   "compress": false,
   "downloadUrlRule": "$.data@js:if (result == '') \n '' \n else \n 'https://你的域名' + result",
