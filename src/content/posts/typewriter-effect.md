@@ -27,7 +27,7 @@ featured: false
 
 **CSS部分**
 
-```
+```css
 <style>
   body{background:#fff;color:#000;font:20px/1.6 'Courier New',monospace;padding:40px;}
   /* 光标闪烁 */
@@ -39,13 +39,13 @@ featured: false
 
 **body主体**
 
-```
+```html
 <div id="typer"></div>
 ```
 
 **JS实现**
 
-```
+```js
 <script>
 /* =========================
  *  可配置区域：文案 & 速度
