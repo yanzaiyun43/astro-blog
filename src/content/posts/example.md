@@ -1,9 +1,9 @@
 ---
 title: "极简设计的艺术"
-description: "探索如何通过减法创造更有力量的设计，以及极简主义在现代数字产品中的应用。"
-publishedAt: 2026-01-15
+description: "探索如何通过减法创造更有力量的设计，以及极简设计在现代数字产品中的应用。"
+publishedAt: 2025-12-31
 category: "设计思考"
-tags: ["极简主义", "设计", "UI/UX"]
+tags: ["极简", "设计", "UI/UX"]
 featured: false
 ---
 
