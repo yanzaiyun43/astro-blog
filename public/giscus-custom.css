@@ -1,11 +1,13 @@
 /* 旧识桥博客 - Giscus 评论区主题 */
 /* 基于 fro 主题修改，适配极简轻奢风格 */
 
+/* 根元素和 HTML 基础样式 */
 :host, html {
   --font-family-serif: ui-serif, "Georgia", "Cambria", "Times New Roman", "Times", serif;
   --font-family-default: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
 }
 
+/* Giscus 主容器 - 定义所有 CSS 变量 */
 main {
   /* 基础颜色 - 适配博客配色 */
   --color-fg-default: #334155;
@@ -69,57 +71,60 @@ main {
   letter-spacing: 0.3px;
 }
 
-/* 隐藏默认头部 */
+/* gsc-header - 评论区顶部标题栏（已隐藏） */
 .gsc-header {
   display: none;
 }
 
-/* 左侧头部链接 */
+/* gsc-left-header - 左侧标题区域链接 */
 .gsc-comments .gsc-header .gsc-left-header em a {
   color: var(--text-muted-color);
   text-underline-offset: 4px;
   transition: all 0.2s;
 }
 
+/* gsc-left-header 链接悬停效果 */
 .gsc-comments .gsc-header .gsc-left-header em a:hover {
   color: var(--text-normal-color);
 }
 
-/* 右侧头部 */
+/* gsc-right-header - 右侧排序选项卡 */
 .gsc-right-header {
   border-radius: 0;
 }
 
+/* gsc-right-header 未选中选项 */
 .gsc-right-header li:not(.BtnGroup-item--selected) {
   border-top: none;
   border-left: none;
   border-right: none;
 }
 
+/* gsc-right-header 选项悬停效果 */
 .gsc-right-header li:not(.BtnGroup-item--selected) .btn:hover {
   background-color: transparent;
   color: var(--text-normal-color);
 }
 
-/* 隐藏评论框标签 */
+/* gsc-comment-box-tabs - 评论框标签页（Write/Preview）已隐藏 */
 .gsc-comment-box-tabs {
   display: none;
 }
 
-/* 评论框主体 */
+/* gsc-comment-box - 评论输入框容器 */
 .gsc-comment-box {
   border: none;
   background-color: transparent;
 }
 
-/* 评论框输入区域 */
+/* gsc-comment-box-main - 评论输入框主区域 */
 .gsc-comment-box-main {
   border: 1px solid var(--color-border-default);
   border-radius: 8px;
   background: var(--color-canvas-overlay);
 }
 
-/* 文本输入框 */
+/* gsc-comment-box-textarea - 文本输入框 */
 .gsc-comment-box-main .gsc-comment-box-write textarea.gsc-comment-box-textarea {
   border: none;
   border-bottom: 1px dashed var(--color-border-default);
@@ -131,19 +136,20 @@ main {
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+/* gsc-comment-box-textarea 聚焦状态 */
 .gsc-comment-box-main .gsc-comment-box-write textarea.gsc-comment-box-textarea:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
 }
 
-/* 工具栏 */
+/* gsc-comment-box-toolbar - Markdown 工具栏 */
 .gsc-comment-box-toolbar {
   border: none;
   border-radius: 0 0 8px 8px;
   background: var(--color-canvas-overlay);
 }
 
-/* 按钮 */
+/* gsc-comment-box-buttons - 评论框按钮组 */
 .gsc-comment-box-buttons button {
   border-radius: 6px;
   font-size: 0.875rem;
@@ -152,80 +158,105 @@ main {
   transition: all 0.2s;
 }
 
+/* gsc-comment-box-bottom 按钮悬停效果 */
 .gsc-comment-box-bottom button:hover {
   color: var(--text-normal-color);
 }
 
-/* 主按钮 */
+/* btn-primary - 提交评论主按钮 */
 .gsc-comment-box-buttons .btn-primary {
   background: var(--color-accent-fg);
   border-color: var(--color-accent-fg);
   color: #ffffff;
 }
 
+/* btn-primary 悬停效果 */
 .gsc-comment-box-buttons .btn-primary:hover {
   background: var(--color-accent-emphasis);
   border-color: var(--color-accent-emphasis);
   transform: translateY(-1px);
 }
 
+/* btn-primary 禁用状态 */
 .gsc-comment-box-buttons .btn-primary:disabled {
   background: var(--color-border-default);
   border-color: var(--color-border-default);
   color: var(--color-fg-subtle);
 }
 
-/* 评论列表 */
+/* gsc-comment - 单条评论容器 */
 .gsc-comment {
   border-bottom: 1px solid var(--color-border-muted);
   padding: 20px 0;
 }
 
+/* gsc-comment 最后一条评论去除下边框 */
 .gsc-comment:last-child {
   border-bottom: none;
 }
 
+/* gsc-comment-content - 评论内容文本 */
 .gsc-comment-content {
   font-size: 0.95rem;
   line-height: 1.8;
   color: var(--color-fg-default);
 }
 
-/* 评论作者 */
+/* gsc-comment-author - 评论作者名字 */
 .gsc-comment-author {
   font-weight: 600;
   color: var(--color-fg-default);
 }
 
+/* gsc-comment-author-avatar - 评论者头像 */
 .gsc-comment-author-avatar {
   border-radius: 50%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* 时间戳 */
+/* gsc-comment-timestamp - 评论时间戳 */
 .gsc-comment-timestamp {
   color: var(--color-fg-subtle);
   font-size: 0.8rem;
 }
 
-/* 隐藏反应按钮计数 */
+/* gsc-reactions-count - 反应按钮计数（已隐藏） */
 .gsc-reactions-count {
   display: none;
 }
 
-/* 链接 */
+/* gsc-comment-author-label - 作者标识标签 */
+.gsc-comment-author-label {
+  background: transparent;
+  border: none;
+  color: var(--color-accent-fg);
+  font-size: 0;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* gsc-comment-author-label 伪元素 - 显示 ✦ 图标 */
+.gsc-comment-author-label::before {
+  content: '✦';
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--color-accent-fg);
+}
+
+/* main a - 评论区内所有链接 */
 main a {
   color: var(--color-accent-fg);
   text-decoration: none;
   transition: color 0.2s;
 }
 
+/* main a 链接悬停效果 */
 main a:hover {
   color: var(--color-accent-emphasis);
   text-decoration: underline;
 }
 
-/* 代码块 */
+/* main pre - 代码块 */
 main pre {
   background: var(--color-canvas-inset);
   border-radius: 6px;
@@ -233,12 +264,13 @@ main pre {
   overflow-x: auto;
 }
 
+/* main code - 行内代码 */
 main code {
   font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
   font-size: 0.85rem;
 }
 
-/* 引用 */
+/* main blockquote - 引用块 */
 main blockquote {
   border-left: 3px solid var(--color-accent-emphasis);
   background: var(--color-accent-subtle);
@@ -247,13 +279,14 @@ main blockquote {
   border-radius: 0 6px 6px 0;
 }
 
-/* 表格 */
+/* main table - 表格 */
 main table {
   border-collapse: collapse;
   width: 100%;
   margin: 16px 0;
 }
 
+/* main th td - 表格单元格 */
 main th,
 main td {
   border: 1px solid var(--color-border-default);
@@ -261,27 +294,31 @@ main td {
   text-align: left;
 }
 
+/* main th - 表格表头 */
 main th {
   background: var(--color-canvas-subtle);
   font-weight: 600;
 }
 
-/* 滚动条 */
+/* ::-webkit-scrollbar - 自定义滚动条 */
 main ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
+/* ::-webkit-scrollbar-track - 滚动条轨道 */
 main ::-webkit-scrollbar-track {
   background: var(--color-canvas-inset);
   border-radius: 4px;
 }
 
+/* ::-webkit-scrollbar-thumb - 滚动条滑块 */
 main ::-webkit-scrollbar-thumb {
   background: var(--color-border-default);
   border-radius: 4px;
 }
 
+/* ::-webkit-scrollbar-thumb:hover - 滚动条滑块悬停 */
 main ::-webkit-scrollbar-thumb:hover {
   background: var(--color-fg-subtle);
 }
