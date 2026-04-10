@@ -118,18 +118,6 @@ main .gsc-left-header .color-text-secondary,
   border-color: var(--color-btn-hover-border);
 }
 
-/* 工具栏和输入框之间的虚线间隔 */
-.gsc-toolbar {
-  border-bottom: 1px dashed var(--color-border-default);
-  padding-bottom: 12px;
-  margin-bottom: 0;
-}
-
-/* 输入框顶部与虚线的间距 */
-.gsc-comment-box-textarea {
-  margin-top: 12px;
-}
-
 /* 输入框 */
 .gsc-comment-box-textarea,
 .form-control {
