@@ -118,6 +118,18 @@ main .gsc-left-header .color-text-secondary,
   border-color: var(--color-btn-hover-border);
 }
 
+/* 工具栏和输入框之间的虚线间隔 */
+.gsc-toolbar {
+  border-bottom: 1px dashed var(--color-border-default);
+  padding-bottom: 12px;
+  margin-bottom: 0;
+}
+
+/* 输入框顶部与虚线的间距 */
+.gsc-comment-box-textarea {
+  margin-top: 12px;
+}
+
 /* 输入框 */
 .gsc-comment-box-textarea,
 .form-control {
@@ -232,71 +244,13 @@ main .gsc-left-header .color-text-secondary,
 .markdown-body a {
   color: var(--color-accent-fg);
   text-decoration: none;
-  border-bottom: none;
-  transition: opacity 0.2s ease;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
 }
 
 .gsc-comment-content a:hover,
 .markdown-body a:hover {
-  opacity: 0.8;
-}
-
-/* 评论区头部链接无下划线 */
-.gsc-comment-header a,
-.gsc-comment-author a,
-.gsc-comment-date a,
-.gsc-reactions-count a {
-  border-bottom: none !important;
-  text-decoration: none !important;
-}
-
-/* "由 giscus 提供支持" 样式 */
-.gsc-powered-by {
-  font-size: 12px;
-  color: var(--color-fg-subtle);
-  margin-top: 8px;
-}
-
-.gsc-powered-by a {
-  color: var(--color-fg-muted);
-  border-bottom: none !important;
-}
-
-/* Markdown 提示样式 */
-.gsc-comment-box-main {
-  position: relative;
-}
-
-.gsc-comment-box-md-hint {
-  position: absolute;
-  bottom: -24px;
-  right: 0;
-  font-size: 12px;
-  color: var(--color-fg-subtle);
-  background: transparent;
-  padding: 0;
-  border: none;
-}
-
-.gsc-comment-box-md-hint a {
-  color: var(--color-fg-muted);
-  border-bottom: none !important;
-}
-
-/* 写评论按钮和 Markdown 提示整合 */
-.gsc-comment-box {
-  padding-bottom: 32px;
-}
-
-.gsc-comment-box-actions {
-  margin-top: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.gsc-comment-box-actions .btn-primary {
-  order: 2;
+  border-bottom-color: var(--color-accent-fg);
 }
 
 /* 代码块 */
