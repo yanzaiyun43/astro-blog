@@ -208,8 +208,16 @@ main {
   color: var(--color-fg-default);
 }
 
-/* gsc-comment-author-avatar - 评论者头像 */
+/* gsc-comment-author-avatar - 评论者头像链接 */
 .gsc-comment-author-avatar {
+  border-radius: 50%;
+  box-shadow: none;
+  background: transparent !important;
+  border: none !important;
+}
+
+/* 评论者头像图片 */
+.gsc-comment-author-avatar img {
   border-radius: 50%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -226,18 +234,20 @@ main {
 }
 
 /* gsc-comment-author-label - 作者标识标签 */
-.gsc-comment-author-label {
-  background: transparent;
-  border: none;
-  color: var(--color-accent-fg);
-  font-size: 0;
+.gsc-comment-author-label,
+.color-box-border-info {
+  background: transparent !important;
+  border-color: var(--color-accent-fg) !important;
+  color: var(--color-accent-fg) !important;
+  font-size: 0 !important;
   margin-left: 4px;
-  padding: 0;
+  padding: 0 !important;
   vertical-align: middle;
 }
 
 /* 自定义作者标签文字 */
-.gsc-comment-author-label::after {
+.gsc-comment-author-label::after,
+.color-box-border-info::after {
   content: '作者';
   font-size: 0.7rem;
   color: var(--color-accent-fg);
@@ -245,7 +255,8 @@ main {
 
 /* 手机版作者标签 */
 @media (max-width: 768px) {
-  .gsc-comment-author-label::after {
+  .gsc-comment-author-label::after,
+  .color-box-border-info::after {
     font-size: 0.65rem;
   }
 }
