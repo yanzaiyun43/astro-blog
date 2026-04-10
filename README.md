@@ -110,13 +110,7 @@ astro/
 
 ## 部署
 
-支持多种静态托管平台：
-
-- **Vercel**
-- **Netlify**
-- **GitHub Pages**
-- **Cloudflare Pages**
-
+支持**Vercel**一键部署
 
 ## 配置
 
