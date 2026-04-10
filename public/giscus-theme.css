@@ -154,36 +154,38 @@ main .gsc-left-header .color-text-secondary,
   color: var(--color-fg-subtle);
 }
 
-/* Markdown 提示区域 - 完全融合 */
-.gsc-comment-box .gsc-comment-box-textarea-extras,
-.gsc-comment-box-write .gsc-comment-box-textarea-extras,
-.form-control.input-contrast.gsc-comment-box-textarea-extras {
+/* Markdown 提示区域 - 覆盖 .form-control 和 .input-contrast 样式 */
+.gsc-comment-box-textarea-extras.form-control.input-contrast {
   background-color: transparent !important;
   border: none !important;
-  border-top: none !important;
-  padding: 0 12px 8px 12px !important;
-  margin: 0 !important;
+  border-top: 1px solid var(--color-border-default) !important;
+  border-radius: 0 !important;
+  padding: 8px 12px !important;
   display: flex !important;
   justify-content: flex-end !important;
+  min-height: auto !important;
 }
 
-.gsc-comment-box .gsc-comment-box-markdown-hint {
+.gsc-comment-box-markdown-hint {
   color: var(--color-fg-subtle) !important;
-  font-size: 12px !important;
-  transition: color 0.2s ease !important;
-  opacity: 0.6 !important;
-  margin: 0 !important;
-  padding: 4px !important;
+  font-size: 12px;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.gsc-comment-box .gsc-comment-box-markdown-hint:hover {
+.gsc-comment-box-markdown-hint:hover {
   color: var(--color-accent-fg) !important;
-  opacity: 1 !important;
+}
+
+.gsc-comment-box-markdown-hint .octicon {
+  vertical-align: text-bottom;
 }
 
 /* 底部工具栏 */
 .gsc-comment-box-bottom {
-  border-top: 1px solid var(--color-border-muted) !important;
+  border-top: 1px solid var(--color-border-default) !important;
   background: transparent !important;
   padding: 12px !important;
 }
