@@ -118,6 +118,20 @@ main .gsc-left-header .color-text-secondary,
   border-color: var(--color-btn-hover-border) !important;
 }
 
+/* 评论框主容器 */
+.gsc-comment-box-main,
+.gsc-comment-box-write {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+/* 输入框容器 */
+.gsc-comment-box-write {
+  display: flex;
+  flex-direction: column;
+}
+
 /* 输入框：去掉独立边框，只留内边距 */
 .gsc-comment-box-textarea,
 .form-control {
@@ -128,6 +142,8 @@ main .gsc-left-header .color-text-secondary,
   font-size: 14px;
   line-height: 1.6;
   padding: 12px;
+  resize: vertical;
+  min-height: 100px;
 }
 .gsc-comment-box-textarea:focus,
 .form-control:focus {
@@ -138,10 +154,30 @@ main .gsc-left-header .color-text-secondary,
   color: var(--color-fg-subtle);
 }
 
+/* Markdown 提示区域 */
+.gsc-comment-box-textarea-extras {
+  background-color: transparent !important;
+  border-top: 1px solid var(--color-border-muted) !important;
+  padding: 8px 12px !important;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.gsc-comment-box-markdown-hint {
+  color: var(--color-fg-subtle) !important;
+  font-size: 12px;
+  transition: color 0.2s ease;
+}
+
+.gsc-comment-box-markdown-hint:hover {
+  color: var(--color-accent-fg) !important;
+}
+
 /* 底部工具栏：去掉边框、无缝衔接 */
 .gsc-comment-box-bottom {
-  border-top: none !important;
+  border-top: 1px solid var(--color-border-muted) !important;
   background: transparent !important;
+  padding: 12px !important;
 }
 
 /* 按钮 */
