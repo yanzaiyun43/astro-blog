@@ -1,302 +1,422 @@
-/* Giscus 自定义主题 - 适配旧识桥博客风格 */
-/* 基于极简轻奢风格：柔和浅蓝/浅灰/米白配色 */
+main {
+  /* 语法高亮颜色 - 适配博客配色 */
+  --color-prettylights-syntax-comment: #78716c;
+  --color-prettylights-syntax-constant: #0ea5e9;
+  --color-prettylights-syntax-entity: #8b5cf6;
+  --color-prettylights-syntax-storage-modifier-import: #44403c;
+  --color-prettylights-syntax-entity-tag: #10b981;
+  --color-prettylights-syntax-keyword: #ec4899;
+  --color-prettylights-syntax-string: #0a3069;
+  --color-prettylights-syntax-variable: #f59e0b;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #dc2626;
+  --color-prettylights-syntax-invalid-illegal-text: #fafaf9;
+  --color-prettylights-syntax-invalid-illegal-bg: #dc2626;
+  --color-prettylights-syntax-carriage-return-text: #fafaf9;
+  --color-prettylights-syntax-carriage-return-bg: #ec4899;
+  --color-prettylights-syntax-string-regexp: #10b981;
+  --color-prettylights-syntax-markup-list: #44403c;
+  --color-prettylights-syntax-markup-heading: #0ea5e9;
+  --color-prettylights-syntax-markup-italic: #44403c;
+  --color-prettylights-syntax-markup-bold: #44403c;
+  --color-prettylights-syntax-markup-deleted-text: #dc2626;
+  --color-prettylights-syntax-markup-deleted-bg: #ffe4e6;
+  --color-prettylights-syntax-markup-inserted-text: #10b981;
+  --color-prettylights-syntax-markup-inserted-bg: #d1fae5;
+  --color-prettylights-syntax-markup-changed-text: #f59e0b;
+  --color-prettylights-syntax-markup-changed-bg: #fef3c7;
+  --color-prettylights-syntax-markup-ignored-text: #f5f5f4;
+  --color-prettylights-syntax-markup-ignored-bg: #0ea5e9;
+  --color-prettylights-syntax-meta-diff-range: #8b5cf6;
+  --color-prettylights-syntax-brackethighlighter-angle: #78716c;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #a8a29e;
+  --color-prettylights-syntax-constant-other-reference-link: #0a3069;
 
-.gsc-main {
-  --color-primary: #7dd3fc;
-  --color-primary-hover: #38bdf8;
-  --color-primary-subtle: #f0f9ff;
-  --color-primary-muted: #e0f2fe;
-  --color-bg: #fafaf9;
-  --color-surface: #ffffff;
-  --color-surface-elevated: #f5f5f4;
-  --color-surface-hover: #f8f6f3;
-  --color-text: #44403c;
-  --color-text-muted: #78716c;
-  --color-text-subtle: #a8a29e;
-  --color-border: #e7e5e4;
-  --color-border-subtle: #f5f5f4;
-  --color-border-hover: #d6d3d1;
+  /* 按钮颜色 */
+  --color-btn-text: #44403c;
+  --color-btn-bg: #ffffff;
+  --color-btn-border: #e7e5e4;
+  --color-btn-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+  --color-btn-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  --color-btn-hover-bg: #f8f6f3;
+  --color-btn-hover-border: #d6d3d1;
+  --color-btn-active-bg: #f5f5f4;
+  --color-btn-active-border: #d6d3d1;
+  --color-btn-selected-bg: #f5f5f4;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #7dd3fc;
+  --color-btn-primary-border: #38bdf8;
+  --color-btn-primary-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  --color-btn-primary-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --color-btn-primary-hover-bg: #38bdf8;
+  --color-btn-primary-hover-border: #0ea5e9;
+  --color-btn-primary-selected-bg: #0ea5e9;
+  --color-btn-primary-selected-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
+  --color-btn-primary-disabled-text: rgba(255, 255, 255, 0.8);
+  --color-btn-primary-disabled-bg: #bae6fd;
+  --color-btn-primary-disabled-border: #7dd3fc;
+
+  /* 文字颜色 */
+  --color-fg-default: #44403c;
+  --color-fg-muted: #78716c;
+  --color-fg-subtle: #a8a29e;
+
+  /* 背景颜色 */
+  --color-canvas-default: #fafaf9;
+  --color-canvas-overlay: #ffffff;
+  --color-canvas-inset: #f5f5f4;
+  --color-canvas-subtle: #f8f6f3;
+
+  /* 边框颜色 */
+  --color-border-default: #e7e5e4;
+  --color-border-muted: #f5f5f4;
+
+  /* 强调色 */
+  --color-accent-fg: #38bdf8;
+  --color-accent-emphasis: #7dd3fc;
+  --color-accent-muted: #e0f2fe;
+  --color-accent-subtle: #f0f9ff;
+
+  /* 状态颜色 */
+  --color-success-fg: #10b981;
+  --color-attention-fg: #f59e0b;
+  --color-danger-fg: #dc2626;
+  --color-danger-muted: rgba(248, 113, 113, 0.4);
+  --color-danger-subtle: #ffe4e6;
+
+  /* 阴影 */
+  --color-primer-shadow-inset: inset 0 1px 0 rgba(231, 229, 228, 0.2);
+  --color-primer-shadow-focus: 0 0 0 3px rgba(125, 211, 252, 0.3);
+
+  /* 扩展 */
+  --color-social-reaction-bg-hover: #f5f5f4;
+  --color-social-reaction-bg-reacted-hover: #e0f2fe;
+
+  color-scheme: light;
 }
 
-/* 整体背景 */
-.gsc-main {
-  background-color: var(--color-bg) !important;
-  color: var(--color-text) !important;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+/* 字体设置 */
+main {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: 0.3px;
+}
+
+/* 隐藏头部 */
+main .gsc-left-header .color-text-secondary,
+.gsc-header {
+  display: none;
 }
 
 /* 评论框 */
 .gsc-comment-box {
-  background-color: var(--color-surface) !important;
-  border: 1px solid var(--color-border) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+  background-color: var(--color-canvas-overlay);
+  border: 1px solid var(--color-border-default);
+  border-radius: 8px;
+  box-shadow: var(--color-btn-shadow);
 }
 
 .gsc-comment-box:hover {
-  border-color: var(--color-border-hover) !important;
+  border-color: var(--color-btn-hover-border);
 }
 
 /* 输入框 */
-.gsc-comment-box-textarea {
-  background-color: var(--color-surface) !important;
-  color: var(--color-text) !important;
-  border: 1px solid var(--color-border) !important;
-  border-radius: 6px !important;
-  font-size: 14px !important;
-  line-height: 1.6 !important;
+.gsc-comment-box-textarea,
+.form-control {
+  background-color: var(--color-canvas-overlay);
+  color: var(--color-fg-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 12px;
 }
 
-.gsc-comment-box-textarea:focus {
-  outline: none !important;
-  border-color: var(--color-primary) !important;
-  box-shadow: 0 0 0 3px var(--color-primary-subtle) !important;
+.gsc-comment-box-textarea:focus,
+.form-control:focus {
+  outline: 0;
+  border-color: var(--color-accent-emphasis);
+  box-shadow: var(--color-primer-shadow-focus);
 }
 
 .gsc-comment-box-textarea::placeholder {
-  color: var(--color-text-placeholder) !important;
+  color: var(--color-fg-subtle);
 }
 
 /* 按钮 */
-.gsc-comment-box-submit {
-  background-color: var(--color-primary) !important;
-  color: white !important;
-  border: none !important;
-  border-radius: 6px !important;
-  padding: 8px 16px !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  transition: all 0.2s ease !important;
+.btn {
+  background-color: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  border: 1px solid var(--color-btn-border);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--color-btn-shadow);
+  transition: all 0.2s ease;
 }
 
-.gsc-comment-box-submit:hover {
-  background-color: var(--color-primary-hover) !important;
-  transform: translateY(-1px) !important;
+.btn:hover {
+  background-color: var(--color-btn-hover-bg);
+  border-color: var(--color-btn-hover-border);
+}
+
+.btn-primary {
+  background-color: var(--color-btn-primary-bg);
+  color: var(--color-btn-primary-text);
+  border-color: var(--color-btn-primary-border);
+  box-shadow: var(--color-btn-primary-shadow);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-btn-primary-hover-bg);
+  border-color: var(--color-btn-primary-hover-border);
 }
 
 /* 评论列表 */
 .gsc-timeline {
-  border: none !important;
+  border: none;
+}
+
+.gsc-tl-line {
+  width: 1px;
+  background-color: var(--color-border-muted);
 }
 
 .gsc-comment {
-  background-color: var(--color-surface) !important;
-  border: 1px solid var(--color-border) !important;
-  border-radius: 8px !important;
-  margin-bottom: 16px !important;
-  padding: 16px !important;
-  transition: all 0.2s ease !important;
+  background-color: var(--color-canvas-overlay);
+  border: 1px solid var(--color-border-default);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  transition: all 0.2s ease;
 }
 
 .gsc-comment:hover {
-  border-color: var(--color-border-hover) !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  border-color: var(--color-btn-hover-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 /* 评论头部 */
 .gsc-comment-header {
-  border-bottom: 1px solid var(--color-border-subtle) !important;
-  padding-bottom: 12px !important;
-  margin-bottom: 12px !important;
+  border-bottom: 1px solid var(--color-border-muted);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 .gsc-comment-author {
-  color: var(--color-text) !important;
-  font-weight: 600 !important;
-  font-size: 14px !important;
+  color: var(--color-fg-default);
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .gsc-comment-date {
-  color: var(--color-text-muted) !important;
-  font-size: 12px !important;
+  color: var(--color-fg-muted);
+  font-size: 12px;
 }
 
 /* 评论内容 */
-.gsc-comment-content {
-  color: var(--color-text) !important;
-  font-size: 14px !important;
-  line-height: 1.7 !important;
+.gsc-comment-content,
+.markdown-body {
+  color: var(--color-fg-default);
+  font-size: 14px;
+  line-height: 1.7;
 }
 
-.gsc-comment-content p {
-  margin-bottom: 12px !important;
+.gsc-comment-content p,
+.markdown-body p {
+  margin-bottom: 12px;
 }
 
-.gsc-comment-content a {
-  color: var(--color-primary-hover) !important;
-  text-decoration: none !important;
-  border-bottom: 1px solid transparent !important;
-  transition: border-color 0.2s ease !important;
+.gsc-comment-content a,
+.markdown-body a {
+  color: var(--color-accent-fg);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
 }
 
-.gsc-comment-content a:hover {
-  border-bottom-color: var(--color-primary-hover) !important;
+.gsc-comment-content a:hover,
+.markdown-body a:hover {
+  border-bottom-color: var(--color-accent-fg);
 }
 
 /* 代码块 */
 .gsc-comment-content pre,
-.markdown-body pre {
-  background-color: var(--color-surface-elevated) !important;
-  border: 1px solid var(--color-border) !important;
-  border-radius: 6px !important;
-  padding: 12px !important;
-  font-size: 13px !important;
-  overflow-x: auto !important;
+.markdown-body pre,
+.markdown-body .highlight pre {
+  background-color: var(--color-canvas-inset);
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 13px;
+  overflow-x: auto;
 }
 
 .gsc-comment-content code,
 .markdown-body code {
-  background-color: var(--color-primary-subtle) !important;
-  color: var(--color-primary-hover) !important;
-  padding: 2px 6px !important;
-  border-radius: 4px !important;
-  font-size: 13px !important;
-  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace !important;
+  background-color: var(--color-accent-subtle);
+  color: var(--color-accent-fg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
 }
 
 .gsc-comment-content pre code,
 .markdown-body pre code {
-  background-color: transparent !important;
-  color: var(--color-text) !important;
-  padding: 0 !important;
+  background-color: transparent;
+  color: var(--color-fg-default);
+  padding: 0;
 }
 
-/* GitHub 代码高亮样式覆盖 */
-.markdown-body .highlight pre,
-.markdown-body pre {
-  background-color: var(--color-surface-elevated) !important;
-}
-
-.markdown-body .blob-code-inner {
-  color: var(--color-text) !important;
-}
-
-/* 语法高亮颜色 */
-.pl-c { color: var(--color-text-muted) !important; } /* 注释 */
-.pl-c1 { color: #0ea5e9 !important; } /* 常量 */
-.pl-s { color: #10b981 !important; } /* 字符串 */
-.pl-k { color: #ec4899 !important; } /* 关键字 */
-.pl-en { color: #8b5cf6 !important; } /* 函数名 */
-.pl-v { color: #f59e0b !important; } /* 变量 */
-.pl-e { color: #3b82f6 !important; } /* 实体 */
-.pl-smi { color: var(--color-text) !important; } /* 标识符 */
+/* 代码高亮 - 使用 Pretty Lights 变量 */
+.pl-c { color: var(--color-prettylights-syntax-comment); }
+.pl-c1 { color: var(--color-prettylights-syntax-constant); }
+.pl-s { color: var(--color-prettylights-syntax-string); }
+.pl-k { color: var(--color-prettylights-syntax-keyword); }
+.pl-en { color: var(--color-prettylights-syntax-entity); }
+.pl-v { color: var(--color-prettylights-syntax-variable); }
+.pl-e { color: var(--color-prettylights-syntax-entity-tag); }
+.pl-smi { color: var(--color-fg-default); }
 
 /* 引用块 */
-.gsc-comment-content blockquote {
-  border-left: 3px solid var(--color-primary) !important;
-  background: linear-gradient(to right, var(--color-primary-subtle), transparent) !important;
-  padding: 12px 16px !important;
-  margin: 12px 0 !important;
-  border-radius: 0 6px 6px 0 !important;
-  color: var(--color-text-muted) !important;
+.gsc-comment-content blockquote,
+.markdown-body blockquote {
+  border-left: 3px solid var(--color-accent-emphasis);
+  background: linear-gradient(to right, var(--color-accent-subtle), transparent);
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 0 6px 6px 0;
+  color: var(--color-fg-muted);
 }
 
 /* 反应按钮 */
 .gsc-reactions {
-  border-top: 1px solid var(--color-border-subtle) !important;
-  padding-top: 12px !important;
-  margin-top: 12px !important;
+  border-top: 1px solid var(--color-border-muted);
+  padding-top: 12px;
+  margin-top: 12px;
 }
 
 .gsc-reaction-button {
-  background-color: var(--color-surface-elevated) !important;
-  border: 1px solid var(--color-border) !important;
-  border-radius: 20px !important;
-  padding: 4px 12px !important;
-  font-size: 13px !important;
-  color: var(--color-text-muted) !important;
-  transition: all 0.2s ease !important;
+  background-color: var(--color-canvas-inset);
+  border: 1px solid var(--color-border-default);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 13px;
+  color: var(--color-fg-muted);
+  transition: all 0.2s ease;
 }
 
 .gsc-reaction-button:hover {
-  background-color: var(--color-primary-subtle) !important;
-  border-color: var(--color-primary) !important;
-  color: var(--color-primary-hover) !important;
+  background-color: var(--color-accent-subtle);
+  border-color: var(--color-accent-emphasis);
+  color: var(--color-accent-fg);
 }
 
 .gsc-reaction-button.has-reacted {
-  background-color: var(--color-primary-muted) !important;
-  border-color: var(--color-primary) !important;
-  color: var(--color-primary-hover) !important;
+  background-color: var(--color-accent-muted);
+  border-color: var(--color-accent-emphasis);
+  color: var(--color-accent-fg);
+}
+
+.gsc-reactions-count {
+  visibility: hidden;
+}
+
+.gsc-reactions-count:after {
+  content: "欢迎评论";
+  visibility: visible;
+  color: var(--color-fg-muted);
+  font-size: 12px;
 }
 
 /* 登录按钮 */
 .gsc-sign-in-button {
-  background-color: var(--color-surface) !important;
-  border: 1px solid var(--color-border) !important;
-  border-radius: 6px !important;
-  color: var(--color-text) !important;
-  padding: 8px 16px !important;
-  font-size: 14px !important;
-  transition: all 0.2s ease !important;
+  background-color: var(--color-canvas-overlay);
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  color: var(--color-fg-default);
+  padding: 8px 16px;
+  font-size: 14px;
+  transition: all 0.2s ease;
 }
 
 .gsc-sign-in-button:hover {
-  background-color: var(--color-surface-hover) !important;
-  border-color: var(--color-border-hover) !important;
+  background-color: var(--color-canvas-subtle);
+  border-color: var(--color-btn-hover-border);
 }
 
 /* 标签页 */
 .gsc-tab {
-  color: var(--color-text-muted) !important;
-  font-size: 14px !important;
-  padding: 8px 16px !important;
-  border-bottom: 2px solid transparent !important;
-  transition: all 0.2s ease !important;
+  color: var(--color-fg-muted);
+  font-size: 14px;
+  padding: 8px 16px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
 }
 
 .gsc-tab:hover {
-  color: var(--color-text) !important;
+  color: var(--color-fg-default);
 }
 
 .gsc-tab-active {
-  color: var(--color-primary-hover) !important;
-  border-bottom-color: var(--color-primary) !important;
-  font-weight: 500 !important;
+  color: var(--color-accent-fg);
+  border-bottom-color: var(--color-accent-emphasis);
+  font-weight: 500;
 }
 
 /* 加载状态 */
 .gsc-loading {
-  color: var(--color-text-muted) !important;
+  color: var(--color-fg-muted);
+}
+
+.gsc-loading-image {
+  background-image: url("https://github.githubassets.com/images/mona-loading-default.gif");
 }
 
 /* 错误提示 */
 .gsc-error {
-  background-color: #fef2f2 !important;
-  border: 1px solid #fecaca !important;
-  color: #dc2626 !important;
-  border-radius: 6px !important;
-  padding: 12px !important;
+  background-color: var(--color-danger-subtle);
+  border: 1px solid var(--color-danger-muted);
+  color: var(--color-danger-fg);
+  border-radius: 6px;
+  padding: 12px;
 }
 
 /* 空状态 */
 .gsc-empty {
-  color: var(--color-text-muted) !important;
-  font-size: 14px !important;
+  color: var(--color-fg-muted);
+  font-size: 14px;
 }
 
 /* 分页 */
 .gsc-pagination {
-  border-top: 1px solid var(--color-border) !important;
-  padding-top: 16px !important;
+  border-top: 1px solid var(--color-border-default);
+  padding-top: 16px;
 }
 
 .gsc-pagination-button {
-  background-color: var(--color-surface) !important;
-  border: 1px solid var(--color-border) !important;
-  border-radius: 6px !important;
-  color: var(--color-text) !important;
-  padding: 6px 12px !important;
-  font-size: 13px !important;
-  transition: all 0.2s ease !important;
+  background-color: var(--color-canvas-overlay);
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  color: var(--color-fg-default);
+  padding: 6px 12px;
+  font-size: 13px;
+  transition: all 0.2s ease;
 }
 
 .gsc-pagination-button:hover {
-  background-color: var(--color-surface-hover) !important;
-  border-color: var(--color-border-hover) !important;
+  background-color: var(--color-canvas-subtle);
+  border-color: var(--color-btn-hover-border);
 }
 
 .gsc-pagination-button:disabled {
-  opacity: 0.5 !important;
-  cursor: not-allowed !important;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 分页加载器 */
+.pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
 }
