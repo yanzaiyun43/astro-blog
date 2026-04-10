@@ -1,506 +1,265 @@
+/* 旧识桥博客 - Giscus 评论区主题 */
+/* 适配极简轻奢风格：柔和浅蓝/浅灰/米白配色 */
+
 main {
-  /* 语法高亮颜色*/
-  --color-prettylights-syntax-comment: #78716c;
-  --color-prettylights-syntax-constant: #0ea5e9;
-  --color-prettylights-syntax-entity: #8b5cf6;
-  --color-prettylights-syntax-storage-modifier-import: #44403c;
-  --color-prettylights-syntax-entity-tag: #10b981;
-  --color-prettylights-syntax-keyword: #ec4899;
-  --color-prettylights-syntax-string: #0a3069;
-  --color-prettylights-syntax-variable: #f59e0b;
-  --color-prettylights-syntax-brackethighlighter-unmatched: #dc2626;
-  --color-prettylights-syntax-invalid-illegal-text: #fafaf9;
-  --color-prettylights-syntax-invalid-illegal-bg: #dc2626;
-  --color-prettylights-syntax-carriage-return-text: #fafaf9;
-  --color-prettylights-syntax-carriage-return-bg: #ec4899;
-  --color-prettylights-syntax-string-regexp: #10b981;
-  --color-prettylights-syntax-markup-list: #44403c;
-  --color-prettylights-syntax-markup-heading: #0ea5e9;
-  --color-prettylights-syntax-markup-italic: #44403c;
-  --color-prettylights-syntax-markup-bold: #44403c;
-  --color-prettylights-syntax-markup-deleted-text: #dc2626;
-  --color-prettylights-syntax-markup-deleted-bg: #ffe4e6;
-  --color-prettylights-syntax-markup-inserted-text: #10b981;
-  --color-prettylights-syntax-markup-inserted-bg: #d1fae5;
-  --color-prettylights-syntax-markup-changed-text: #f59e0b;
-  --color-prettylights-syntax-markup-changed-bg: #fef3c7;
-  --color-prettylights-syntax-markup-ignored-text: #f5f5f4;
-  --color-prettylights-syntax-markup-ignored-bg: #0ea5e9;
-  --color-prettylights-syntax-meta-diff-range: #8b5cf6;
-  --color-prettylights-syntax-brackethighlighter-angle: #78716c;
-  --color-prettylights-syntax-sublimelinter-gutter-mark: #a8a29e;
-  --color-prettylights-syntax-constant-other-reference-link: #0a3069;
+  /* 基础颜色 - 适配博客配色 */
+  --color-fg-default: #334155;
+  --color-fg-muted: #64748b;
+  --color-fg-subtle: #94a3b8;
 
-  /* 按钮颜色 */
-  --color-btn-text: #44403c;
-  --color-btn-bg: #ffffff;
-  --color-btn-border: #e7e5e4;
-  --color-btn-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
-  --color-btn-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  --color-btn-hover-bg: #f8f6f3;
-  --color-btn-hover-border: #d6d3d1;
-  --color-btn-active-bg: #f5f5f4;
-  --color-btn-active-border: #d6d3d1;
-  --color-btn-selected-bg: #f5f5f4;
-  --color-btn-primary-text: #ffffff;
-  --color-btn-primary-bg: #7dd3fc;
-  --color-btn-primary-border: #38bdf8;
-  --color-btn-primary-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
-  --color-btn-primary-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  --color-btn-primary-hover-bg: #38bdf8;
-  --color-btn-primary-hover-border: #0ea5e9;
-  --color-btn-primary-selected-bg: #0ea5e9;
-  --color-btn-primary-selected-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
-  --color-btn-primary-disabled-text: rgba(255, 255, 255, 0.8);
-  --color-btn-primary-disabled-bg: #bae6fd;
-  --color-btn-primary-disabled-border: #7dd3fc;
-
-  /* 文字颜色 */
-  --color-fg-default: #44403c;
-  --color-fg-muted: #78716c;
-  --color-fg-subtle: #a8a29e;
-
-  /* 背景颜色 */
+  /* 背景色 - 米白/浅灰 */
   --color-canvas-default: #fafaf9;
   --color-canvas-overlay: #ffffff;
   --color-canvas-inset: #f5f5f4;
-  --color-canvas-subtle: #f8f6f3;
+  --color-canvas-subtle: #f0f9ff;
 
-  /* 边框颜色 */
-  --color-border-default: #e7e5e4;
-  --color-border-muted: #f5f5f4;
+  /* 边框 - 细线条 */
+  --color-border-default: #e2e8f0;
+  --color-border-muted: #f1f5f9;
 
-  /* 强调色 */
-  --color-accent-fg: #38bdf8;
-  --color-accent-emphasis: #7dd3fc;
+  /* 强调色 - 柔和蓝 */
+  --color-accent-fg: #0ea5e9;
+  --color-accent-emphasis: #38bdf8;
   --color-accent-muted: #e0f2fe;
   --color-accent-subtle: #f0f9ff;
 
-  /* 状态颜色 */
+  /* 按钮 */
+  --color-btn-text: #334155;
+  --color-btn-bg: #ffffff;
+  --color-btn-border: #e2e8f0;
+  --color-btn-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --color-btn-hover-bg: #f8fafc;
+  --color-btn-hover-border: #cbd5e1;
+  --color-btn-active-bg: #f1f5f9;
+
+  /* 主按钮 - 柔和蓝 */
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #0ea5e9;
+  --color-btn-primary-border: #0284c7;
+  --color-btn-primary-hover-bg: #38bdf8;
+  --color-btn-primary-hover-border: #0ea5e9;
+
+  /* 成功/危险 */
   --color-success-fg: #10b981;
-  --color-attention-fg: #f59e0b;
-  --color-danger-fg: #dc2626;
-  --color-danger-muted: rgba(248, 113, 113, 0.4);
-  --color-danger-subtle: #ffe4e6;
+  --color-danger-fg: #ef4444;
+  --color-danger-muted: rgba(239, 68, 68, 0.1);
+  --color-danger-subtle: #fef2f2;
+
+  /* 代码高亮 - 柔和风格 */
+  --color-prettylights-syntax-comment: #94a3b8;
+  --color-prettylights-syntax-constant: #0ea5e9;
+  --color-prettylights-syntax-entity: #8b5cf6;
+  --color-prettylights-syntax-keyword: #ec4899;
+  --color-prettylights-syntax-string: #10b981;
+  --color-prettylights-syntax-variable: #f59e0b;
+  --color-prettylights-syntax-markup-heading: #0ea5e9;
+  --color-prettylights-syntax-markup-inserted-text: #10b981;
+  --color-prettylights-syntax-markup-inserted-bg: #d1fae5;
+  --color-prettylights-syntax-markup-deleted-text: #ef4444;
+  --color-prettylights-syntax-markup-deleted-bg: #fee2e2;
 
   /* 阴影 */
-  --color-primer-shadow-inset: inset 0 1px 0 rgba(231, 229, 228, 0.2);
-  --color-primer-shadow-focus: 0 0 0 3px rgba(125, 211, 252, 0.3);
-
-  /* 扩展 */
-  --color-social-reaction-bg-hover: #f5f5f4;
-  --color-social-reaction-bg-reacted-hover: #e0f2fe;
+  --color-primer-shadow-focus: 0 0 0 3px rgba(14, 165, 233, 0.15);
 
   color-scheme: light;
 }
 
-/* 字体设置 */
+/* 整体字体 */
 main {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
   letter-spacing: 0.3px;
 }
 
-/* 隐藏头部 */
-main .gsc-left-header .color-text-secondary,
-.gsc-header {
+/* 隐藏默认头部 */
+main .gsc-header {
   display: none;
 }
 
-/* 评论整体外框（唯一边框） */
-.gsc-comment-box {
-  background-color: var(--color-canvas-overlay);
-  border: 1px solid var(--color-border-default) !important;
-  border-radius: 10px !important;
-  overflow: hidden !important;
-  box-shadow: var(--color-btn-shadow);
-}
-.gsc-comment-box:hover {
-  border-color: var(--color-btn-hover-border) !important;
+/* 评论框样式 */
+main .gsc-comment-box {
+  background: var(--color-canvas-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: 8px;
+  padding: 16px;
 }
 
-/* 评论框主容器 */
-.gsc-comment-box-main,
-.gsc-comment-box-write {
-  background-color: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-}
-
-/* 输入框容器 */
-.gsc-comment-box-write {
-  display: flex;
-  flex-direction: column;
-}
-
-/* 输入框：去掉独立边框，只留内边距 */
-.gsc-comment-box-textarea,
-.form-control {
-  background-color: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  color: var(--color-fg-default);
-  font-size: 14px;
+main .gsc-comment-box-textarea {
+  background: var(--color-canvas-overlay);
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  font-size: 0.95rem;
   line-height: 1.6;
   padding: 12px;
-  resize: vertical;
-  min-height: 100px;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-.gsc-comment-box-textarea:focus,
-.form-control:focus {
-  outline: 0;
+
+main .gsc-comment-box-textarea:focus {
+  border-color: var(--color-accent-emphasis);
+  box-shadow: var(--color-primer-shadow-focus);
+  outline: none;
+}
+
+/* 按钮样式 */
+main .btn {
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  transition: all 0.2s;
+}
+
+main .btn-primary {
+  background: var(--color-btn-primary-bg);
+  border-color: var(--color-btn-primary-border);
   box-shadow: none;
 }
-.gsc-comment-box-textarea::placeholder {
-  color: var(--color-fg-subtle);
-}
 
-/* Markdown 提示区域 - 覆盖 .form-control 和 .input-contrast 样式 */
-.gsc-comment-box-textarea-extras.form-control.input-contrast {
-  background-color: transparent !important;
-  border: none !important;
-  border-top: 1px solid var(--color-border-default) !important;
-  border-radius: 0 !important;
-  padding: 8px 12px !important;
-  display: flex !important;
-  justify-content: flex-end !important;
-  min-height: auto !important;
-}
-
-.gsc-comment-box-markdown-hint {
-  color: var(--color-fg-subtle) !important;
-  font-size: 12px;
-  transition: color 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.gsc-comment-box-markdown-hint:hover {
-  color: var(--color-accent-fg) !important;
-}
-
-.gsc-comment-box-markdown-hint .octicon {
-  vertical-align: text-bottom;
-}
-
-/* 底部工具栏 */
-.gsc-comment-box-bottom {
-  border-top: 1px solid var(--color-border-default) !important;
-  background: transparent !important;
-  padding: 12px !important;
-}
-
-/* 按钮 */
-.btn {
-  background-color: var(--color-btn-bg);
-  color: var(--color-btn-text);
-  border: 1px solid var(--color-btn-border);
-  border-radius: 6px;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  box-shadow: var(--color-btn-shadow);
-  transition: all 0.2s ease;
-}
-.btn:hover {
-  background-color: var(--color-btn-hover-bg);
-  border-color: var(--color-btn-hover-border);
-}
-.btn-primary {
-  background-color: var(--color-btn-primary-bg);
-  color: var(--color-btn-primary-text);
-  border-color: var(--color-btn-primary-border);
-  box-shadow: var(--color-btn-primary-shadow);
-}
-.btn-primary:hover {
-  background-color: var(--color-btn-primary-hover-bg);
+main .btn-primary:hover {
+  background: var(--color-btn-primary-hover-bg);
   border-color: var(--color-btn-primary-hover-border);
+  transform: translateY(-1px);
 }
 
 /* 评论列表 */
-.gsc-timeline {
-  border: none;
-}
-.gsc-tl-line {
-  width: 1px;
-  background-color: var(--color-border-muted);
-}
-.gsc-comment {
-  background-color: var(--color-canvas-overlay);
-  border: 1px solid var(--color-border-default);
-  border-radius: 8px;
-  margin-bottom: 16px;
-  padding: 16px;
-  font-size: 14px;
-  line-height: 1.7;
-  transition: all 0.2s ease;
-}
-.gsc-comment:hover {
-  border-color: var(--color-btn-hover-border);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-/* 评论头部 */
-.gsc-comment-header {
+main .gsc-comment {
   border-bottom: 1px solid var(--color-border-muted);
-  padding-bottom: 12px;
-  margin-bottom: 12px;
+  padding: 20px 0;
 }
-.gsc-comment-author {
+
+main .gsc-comment:last-child {
+  border-bottom: none;
+}
+
+main .gsc-comment-content {
+  font-size: 0.95rem;
+  line-height: 1.8;
   color: var(--color-fg-default);
+}
+
+/* 评论作者 */
+main .gsc-comment-author {
   font-weight: 600;
-  font-size: 14px;
-}
-.gsc-comment-date {
-  color: var(--color-fg-muted);
-  font-size: 12px;
-}
-
-/* 评论内容 */
-.gsc-comment-content,
-.markdown-body {
   color: var(--color-fg-default);
-  font-size: 14px;
-  line-height: 1.7;
-}
-.gsc-comment-content p,
-.markdown-body p {
-  margin-bottom: 12px;
-}
-.gsc-comment-content a,
-.markdown-body a {
-  color: var(--color-accent-fg);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-.gsc-comment-content a:hover,
-.markdown-body a:hover {
-  border-bottom-color: var(--color-accent-fg);
 }
 
-/* 代码块 */
-.gsc-comment-content pre,
-.markdown-body pre,
-.markdown-body .highlight pre {
-  background-color: var(--color-canvas-inset);
-  border: 1px solid var(--color-border-default);
-  border-radius: 6px;
-  padding: 12px;
-  font-size: 13px;
-  overflow-x: auto;
-}
-.gsc-comment-content code,
-.markdown-body code {
-  background-color: var(--color-accent-subtle);
-  color: var(--color-accent-fg);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 13px;
-  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
-}
-.gsc-comment-content pre code,
-.markdown-body pre code {
-  background-color: transparent;
-  color: var(--color-fg-default);
-  padding: 0;
+main .gsc-comment-author-avatar {
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* 代码高亮 */
-.pl-c { color: var(--color-prettylights-syntax-comment); }
-.pl-c1 { color: var(--color-prettylights-syntax-constant); }
-.pl-s { color: var(--color-prettylights-syntax-string); }
-.pl-k { color: var(--color-prettylights-syntax-keyword); }
-.pl-en { color: var(--color-prettylights-syntax-entity); }
-.pl-v { color: var(--color-prettylights-syntax-variable); }
-.pl-e { color: var(--color-prettylights-syntax-entity-tag); }
-.pl-smi { color: var(--color-fg-default); }
-
-/* 引用块 */
-.gsc-comment-content blockquote,
-.markdown-body blockquote {
-  border-left: 3px solid var(--color-accent-emphasis);
-  background: linear-gradient(to right, var(--color-accent-subtle), transparent);
-  padding: 12px 16px;
-  margin: 12px 0;
-  border-radius: 0 6px 6px 0;
-  color: var(--color-fg-muted);
+/* 时间戳 */
+main .gsc-comment-timestamp {
+  color: var(--color-fg-subtle);
+  font-size: 0.8rem;
 }
 
 /* 反应按钮 */
-.gsc-reactions {
-  border-top: 1px solid var(--color-border-muted);
-  padding-top: 12px;
-  margin-top: 12px;
-}
-.gsc-reaction-button {
-  background-color: var(--color-canvas-inset);
-  border: 1px solid var(--color-border-default);
-  border-radius: 20px;
-  padding: 4px 12px;
-  font-size: 13px;
-  color: var(--color-fg-muted);
-  transition: all 0.2s ease;
-}
-.gsc-reaction-button:hover {
-  background-color: var(--color-accent-subtle);
-  border-color: var(--color-accent-emphasis);
-  color: var(--color-accent-fg);
-}
-.gsc-reaction-button.has-reacted {
-  background-color: var(--color-accent-muted);
-  border-color: var(--color-accent-emphasis);
-  color: var(--color-accent-fg);
-}
-
-.gsc-reactions-count {
+main .gsc-reactions-count {
   visibility: hidden;
 }
-.gsc-reactions-count:after {
-  content: "欢迎评论";
+
+main .gsc-reactions-count::after {
+  content: '赞';
   visibility: visible;
-  color: var(--color-fg-muted);
-  font-size: 12px;
-}
-
-/* 登录按钮 */
-.gsc-sign-in-button {
-  background-color: var(--color-canvas-overlay);
-  border: 1px solid var(--color-border-default);
-  border-radius: 6px;
-  color: var(--color-fg-default);
-  padding: 8px 16px;
-  font-size: 14px;
-  transition: all 0.2s ease;
-}
-.gsc-sign-in-button:hover {
-  background-color: var(--color-canvas-subtle);
-  border-color: var(--color-btn-hover-border);
-}
-
-/* 标签页 */
-.gsc-tab {
-  color: var(--color-fg-muted);
-  font-size: 14px;
-  padding: 8px 16px;
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s ease;
-}
-.gsc-tab:hover {
-  color: var(--color-fg-default);
-}
-.gsc-tab-active {
-  color: var(--color-accent-fg);
-  border-bottom-color: var(--color-accent-emphasis);
-  font-weight: 500;
-}
-
-/* 加载状态 */
-.gsc-loading {
+  margin-left: -8px;
+  font-size: 0.8rem;
   color: var(--color-fg-muted);
 }
-.gsc-loading-image {
-  background-image: url("https://github.githubassets.com/images/mona-loading-default.gif");
-}
 
-/* 错误提示 */
-.gsc-error {
-  background-color: var(--color-danger-subtle);
-  border: 1px solid var(--color-danger-muted);
-  color: var(--color-danger-fg);
-  border-radius: 6px;
-  padding: 12px;
-}
-
-/* 空状态 */
-.gsc-empty {
-  color: var(--color-fg-muted);
-  font-size: 14px;
+/* 加载动画 */
+main .gsc-loading-image {
+  background-image: url('https://github.githubassets.com/images/mona-loading-default.gif');
+  opacity: 0.6;
 }
 
 /* 分页 */
-.gsc-pagination {
-  border-top: 1px solid var(--color-border-default);
-  padding-top: 16px;
+main .pagination-loader-container {
+  background-image: url('https://github.com/images/modules/pulls/progressive-disclosure-line.svg');
 }
-.gsc-pagination-button {
-  background-color: var(--color-canvas-overlay);
-  border: 1px solid var(--color-border-default);
+
+/* 回复框 */
+main .gsc-reply-box {
+  background: var(--color-canvas-subtle);
   border-radius: 6px;
-  color: var(--color-fg-default);
-  padding: 6px 12px;
-  font-size: 13px;
-  transition: all 0.2s ease;
-}
-.gsc-pagination-button:hover {
-  background-color: var(--color-canvas-subtle);
-  border-color: var(--color-btn-hover-border);
-}
-.gsc-pagination-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  padding: 12px;
+  margin-top: 12px;
 }
 
-.pagination-loader-container {
-  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
+/* 表情选择器 */
+main .gsc-emoji-picker {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* ==========================================
-   移动端适配
-   ========================================== */
-@media (max-width: 640px) {
-  main {
-    font-size: 15px;
-  }
+/* 链接 */
+main a {
+  color: var(--color-accent-fg);
+  text-decoration: none;
+  transition: color 0.2s;
+}
 
-  .gsc-comment-box {
-    border-radius: 8px !important;
-  }
+main a:hover {
+  color: var(--color-accent-emphasis);
+  text-decoration: underline;
+}
 
-  .gsc-comment-box-textarea,
-  .form-control {
-    font-size: 16px; /* 防止 iOS 缩放 */
-    padding: 10px;
-    min-height: 80px;
-  }
+/* 代码块 */
+main pre {
+  background: var(--color-canvas-inset);
+  border-radius: 6px;
+  padding: 16px;
+  overflow-x: auto;
+}
 
-  .gsc-comment-box-textarea-extras.form-control.input-contrast {
-    padding: 6px 10px !important;
-  }
+main code {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  font-size: 0.85rem;
+}
 
-  .gsc-comment-box-bottom {
-    padding: 10px !important;
-  }
+/* 引用 */
+main blockquote {
+  border-left: 3px solid var(--color-accent-emphasis);
+  background: var(--color-accent-subtle);
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 0 6px 6px 0;
+}
 
-  .btn {
-    padding: 6px 12px;
-    font-size: 13px;
-  }
+/* 表格 */
+main table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+}
 
-  .gsc-comment {
-    padding: 12px;
-    margin-bottom: 12px;
-  }
+main th,
+main td {
+  border: 1px solid var(--color-border-default);
+  padding: 10px 12px;
+  text-align: left;
+}
 
-  .gsc-comment-content,
-  .markdown-body {
-    font-size: 15px;
-  }
+main th {
+  background: var(--color-canvas-subtle);
+  font-weight: 600;
+}
 
-  .gsc-comment-content pre,
-  .markdown-body pre,
-  .markdown-body .highlight pre {
-    padding: 10px;
-    font-size: 12px;
-  }
+/* 滚动条 */
+main ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
 
-  .gsc-reaction-button {
-    padding: 3px 10px;
-    font-size: 12px;
-  }
+main ::-webkit-scrollbar-track {
+  background: var(--color-canvas-inset);
+  border-radius: 4px;
+}
 
-  .gsc-tab {
-    font-size: 13px;
-    padding: 6px 12px;
-  }
+main ::-webkit-scrollbar-thumb {
+  background: var(--color-border-default);
+  border-radius: 4px;
+}
+
+main ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-fg-subtle);
 }

@@ -1,4 +1,6 @@
 ---
+import { SITE } from '../consts';
+
 interface Props {
   slug: string;
   title: string;
@@ -17,7 +19,7 @@ const GISCUS_CONFIG = {
   reactionsEnabled: '1',
   emitMetadata: '0',
   inputPosition: 'bottom',
-  theme: 'fro',
+  theme: `${SITE.url}/giscus-theme.css`,
   lang: 'zh-CN',
 };
 ---
