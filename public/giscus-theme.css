@@ -154,26 +154,29 @@ main .gsc-left-header .color-text-secondary,
   color: var(--color-fg-subtle);
 }
 
-/* Markdown 提示区域 */
+/* Markdown 提示区域 - 完全融合 */
 .gsc-comment-box-textarea-extras {
   background-color: transparent !important;
-  border-top: 1px solid var(--color-border-muted) !important;
-  padding: 8px 12px !important;
+  border: none !important;
+  padding: 0 12px 8px 12px !important;
   display: flex;
   justify-content: flex-end;
+  margin-top: -4px;
 }
 
 .gsc-comment-box-markdown-hint {
   color: var(--color-fg-subtle) !important;
   font-size: 12px;
   transition: color 0.2s ease;
+  opacity: 0.7;
 }
 
 .gsc-comment-box-markdown-hint:hover {
   color: var(--color-accent-fg) !important;
+  opacity: 1;
 }
 
-/* 底部工具栏：去掉边框、无缝衔接 */
+/* 底部工具栏 */
 .gsc-comment-box-bottom {
   border-top: 1px solid var(--color-border-muted) !important;
   background: transparent !important;
