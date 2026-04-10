@@ -210,16 +210,19 @@ main {
 
 /* gsc-comment-author-avatar - 评论者头像链接 */
 .gsc-comment-author-avatar {
-  border-radius: 50%;
-  box-shadow: none;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   background: transparent !important;
   border: none !important;
 }
 
-/* 评论者头像图片 */
-.gsc-comment-author-avatar img {
-  border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+/* 评论者头像图片 - 去除白色椭圆背景 */
+.gsc-comment-author-avatar img,
+.gsc-comment-author-avatar .rounded-full {
+  border-radius: 50% !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  background: transparent !important;
+  border: none !important;
 }
 
 /* gsc-comment-timestamp - 评论时间戳 */
