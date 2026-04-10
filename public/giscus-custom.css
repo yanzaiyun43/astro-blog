@@ -208,28 +208,9 @@ main {
   font-size: 0.8rem;
 }
 
-/* 反应按钮 */
-.gsc-reactions {
-  position: relative;
-}
-
+/* 隐藏反应按钮计数 */
 .gsc-reactions-count {
-  visibility: hidden;
-  position: relative;
-  display: inline-block;
-  min-width: 1.5em;
-}
-
-.gsc-reactions-count::after {
-  content: '赞';
-  visibility: visible;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 0.8rem;
-  color: var(--color-fg-muted);
-  white-space: nowrap;
+  display: none;
 }
 
 /* 链接 */
