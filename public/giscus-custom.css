@@ -232,15 +232,22 @@ main {
   color: var(--color-accent-fg);
   font-size: 0;
   margin-left: 4px;
+  padding: 0;
   vertical-align: middle;
 }
 
-/* gsc-comment-author-label 伪元素 - 显示 ✦ 图标 */
-.gsc-comment-author-label::before {
-  content: '✦';
-  font-size: 0.75rem;
-  font-weight: bold;
+/* 自定义作者标签文字 */
+.gsc-comment-author-label::after {
+  content: '作者';
+  font-size: 0.7rem;
   color: var(--color-accent-fg);
+}
+
+/* 手机版作者标签 */
+@media (max-width: 768px) {
+  .gsc-comment-author-label::after {
+    font-size: 0.65rem;
+  }
 }
 
 /* main a - 评论区内所有链接 */
