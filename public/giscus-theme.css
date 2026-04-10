@@ -104,7 +104,7 @@ main .gsc-comment-box-textarea:focus {
 /* Markdown 工具栏 - 与输入框连接 */
 main .gsc-comment-box-toolbar {
   border: 1px solid var(--color-border-default);
-  border-top: none;
+  border-top: 1px dashed var(--color-border-default);
   border-radius: 0 0 6px 6px;
   background: var(--color-canvas-overlay);
   margin-top: 0;
