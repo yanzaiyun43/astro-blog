@@ -445,63 +445,62 @@ main .gsc-left-header .color-text-secondary,
   background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
 }
 
-/* 移动端适配 */
-@media (max-width: 768px) {
-  /* 评论框 */
+/* ==========================================
+   移动端适配
+   ========================================== */
+@media (max-width: 640px) {
+  main {
+    font-size: 15px;
+  }
+
   .gsc-comment-box {
     border-radius: 8px !important;
   }
 
-  /* 输入框 */
   .gsc-comment-box-textarea,
   .form-control {
-    padding: 10px !important;
-    font-size: 16px !important; /* 防止 iOS 缩放 */
-    min-height: 80px !important;
+    font-size: 16px; /* 防止 iOS 缩放 */
+    padding: 10px;
+    min-height: 80px;
   }
 
-  /* Markdown 提示区域 */
   .gsc-comment-box-textarea-extras.form-control.input-contrast {
     padding: 6px 10px !important;
   }
 
-  .gsc-comment-box-markdown-hint {
-    font-size: 11px !important;
-  }
-
-  /* 底部工具栏 */
   .gsc-comment-box-bottom {
     padding: 10px !important;
   }
 
-  /* 按钮 */
   .btn {
-    padding: 6px 12px !important;
-    font-size: 13px !important;
+    padding: 6px 12px;
+    font-size: 13px;
   }
 
-  /* 评论 */
   .gsc-comment {
-    padding: 12px !important;
-    margin-bottom: 12px !important;
+    padding: 12px;
+    margin-bottom: 12px;
   }
 
   .gsc-comment-content,
   .markdown-body {
-    font-size: 15px !important;
-    line-height: 1.6 !important;
+    font-size: 15px;
   }
 
-  /* 代码块 */
   .gsc-comment-content pre,
-  .markdown-body pre {
-    padding: 10px !important;
-    font-size: 13px !important;
+  .markdown-body pre,
+  .markdown-body .highlight pre {
+    padding: 10px;
+    font-size: 12px;
   }
 
-  /* 标签页 */
+  .gsc-reaction-button {
+    padding: 3px 10px;
+    font-size: 12px;
+  }
+
   .gsc-tab {
-    padding: 6px 12px !important;
-    font-size: 13px !important;
+    font-size: 13px;
+    padding: 6px 12px;
   }
 }
