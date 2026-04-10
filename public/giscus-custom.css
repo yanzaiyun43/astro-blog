@@ -209,16 +209,27 @@ main {
 }
 
 /* 反应按钮 */
+.gsc-reactions {
+  position: relative;
+}
+
 .gsc-reactions-count {
   visibility: hidden;
+  position: relative;
+  display: inline-block;
+  min-width: 1.5em;
 }
 
 .gsc-reactions-count::after {
   content: '赞';
   visibility: visible;
-  margin-left: -8px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   font-size: 0.8rem;
   color: var(--color-fg-muted);
+  white-space: nowrap;
 }
 
 /* 链接 */
