@@ -106,39 +106,42 @@ main .gsc-left-header .color-text-secondary,
   display: none;
 }
 
-/* 评论框 */
+/* 评论整体外框（唯一边框） */
 .gsc-comment-box {
   background-color: var(--color-canvas-overlay);
-  border: 1px solid var(--color-border-default);
-  border-radius: 8px;
+  border: 1px solid var(--color-border-default) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
   box-shadow: var(--color-btn-shadow);
 }
-
 .gsc-comment-box:hover {
-  border-color: var(--color-btn-hover-border);
+  border-color: var(--color-btn-hover-border) !important;
 }
 
-/* 输入框 */
+/* 输入框：去掉独立边框，只留内边距 */
 .gsc-comment-box-textarea,
 .form-control {
-  background-color: var(--color-canvas-overlay);
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
   color: var(--color-fg-default);
-  border: 1px solid var(--color-border-default);
-  border-radius: 6px;
   font-size: 14px;
   line-height: 1.6;
   padding: 12px;
 }
-
 .gsc-comment-box-textarea:focus,
 .form-control:focus {
   outline: 0;
-  border-color: var(--color-accent-emphasis);
-  box-shadow: var(--color-primer-shadow-focus);
+  box-shadow: none;
 }
-
 .gsc-comment-box-textarea::placeholder {
   color: var(--color-fg-subtle);
+}
+
+/* 底部工具栏：去掉边框、无缝衔接 */
+.gsc-comment-box-bottom {
+  border-top: none !important;
+  background: transparent !important;
 }
 
 /* 按钮 */
@@ -153,19 +156,16 @@ main .gsc-left-header .color-text-secondary,
   box-shadow: var(--color-btn-shadow);
   transition: all 0.2s ease;
 }
-
 .btn:hover {
   background-color: var(--color-btn-hover-bg);
   border-color: var(--color-btn-hover-border);
 }
-
 .btn-primary {
   background-color: var(--color-btn-primary-bg);
   color: var(--color-btn-primary-text);
   border-color: var(--color-btn-primary-border);
   box-shadow: var(--color-btn-primary-shadow);
 }
-
 .btn-primary:hover {
   background-color: var(--color-btn-primary-hover-bg);
   border-color: var(--color-btn-primary-hover-border);
@@ -175,12 +175,10 @@ main .gsc-left-header .color-text-secondary,
 .gsc-timeline {
   border: none;
 }
-
 .gsc-tl-line {
   width: 1px;
   background-color: var(--color-border-muted);
 }
-
 .gsc-comment {
   background-color: var(--color-canvas-overlay);
   border: 1px solid var(--color-border-default);
@@ -191,7 +189,6 @@ main .gsc-left-header .color-text-secondary,
   line-height: 1.7;
   transition: all 0.2s ease;
 }
-
 .gsc-comment:hover {
   border-color: var(--color-btn-hover-border);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -203,13 +200,11 @@ main .gsc-left-header .color-text-secondary,
   padding-bottom: 12px;
   margin-bottom: 12px;
 }
-
 .gsc-comment-author {
   color: var(--color-fg-default);
   font-weight: 600;
   font-size: 14px;
 }
-
 .gsc-comment-date {
   color: var(--color-fg-muted);
   font-size: 12px;
@@ -222,12 +217,10 @@ main .gsc-left-header .color-text-secondary,
   font-size: 14px;
   line-height: 1.7;
 }
-
 .gsc-comment-content p,
 .markdown-body p {
   margin-bottom: 12px;
 }
-
 .gsc-comment-content a,
 .markdown-body a {
   color: var(--color-accent-fg);
@@ -235,7 +228,6 @@ main .gsc-left-header .color-text-secondary,
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease;
 }
-
 .gsc-comment-content a:hover,
 .markdown-body a:hover {
   border-bottom-color: var(--color-accent-fg);
@@ -252,7 +244,6 @@ main .gsc-left-header .color-text-secondary,
   font-size: 13px;
   overflow-x: auto;
 }
-
 .gsc-comment-content code,
 .markdown-body code {
   background-color: var(--color-accent-subtle);
@@ -262,7 +253,6 @@ main .gsc-left-header .color-text-secondary,
   font-size: 13px;
   font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
 }
-
 .gsc-comment-content pre code,
 .markdown-body pre code {
   background-color: transparent;
@@ -270,7 +260,7 @@ main .gsc-left-header .color-text-secondary,
   padding: 0;
 }
 
-/* 代码高亮 - 使用 Pretty Lights 变量 */
+/* 代码高亮 */
 .pl-c { color: var(--color-prettylights-syntax-comment); }
 .pl-c1 { color: var(--color-prettylights-syntax-constant); }
 .pl-s { color: var(--color-prettylights-syntax-string); }
@@ -297,7 +287,6 @@ main .gsc-left-header .color-text-secondary,
   padding-top: 12px;
   margin-top: 12px;
 }
-
 .gsc-reaction-button {
   background-color: var(--color-canvas-inset);
   border: 1px solid var(--color-border-default);
@@ -307,13 +296,11 @@ main .gsc-left-header .color-text-secondary,
   color: var(--color-fg-muted);
   transition: all 0.2s ease;
 }
-
 .gsc-reaction-button:hover {
   background-color: var(--color-accent-subtle);
   border-color: var(--color-accent-emphasis);
   color: var(--color-accent-fg);
 }
-
 .gsc-reaction-button.has-reacted {
   background-color: var(--color-accent-muted);
   border-color: var(--color-accent-emphasis);
@@ -323,7 +310,6 @@ main .gsc-left-header .color-text-secondary,
 .gsc-reactions-count {
   visibility: hidden;
 }
-
 .gsc-reactions-count:after {
   content: "欢迎评论";
   visibility: visible;
@@ -341,7 +327,6 @@ main .gsc-left-header .color-text-secondary,
   font-size: 14px;
   transition: all 0.2s ease;
 }
-
 .gsc-sign-in-button:hover {
   background-color: var(--color-canvas-subtle);
   border-color: var(--color-btn-hover-border);
@@ -355,11 +340,9 @@ main .gsc-left-header .color-text-secondary,
   border-bottom: 2px solid transparent;
   transition: all 0.2s ease;
 }
-
 .gsc-tab:hover {
   color: var(--color-fg-default);
 }
-
 .gsc-tab-active {
   color: var(--color-accent-fg);
   border-bottom-color: var(--color-accent-emphasis);
@@ -370,7 +353,6 @@ main .gsc-left-header .color-text-secondary,
 .gsc-loading {
   color: var(--color-fg-muted);
 }
-
 .gsc-loading-image {
   background-image: url("https://github.githubassets.com/images/mona-loading-default.gif");
 }
@@ -395,7 +377,6 @@ main .gsc-left-header .color-text-secondary,
   border-top: 1px solid var(--color-border-default);
   padding-top: 16px;
 }
-
 .gsc-pagination-button {
   background-color: var(--color-canvas-overlay);
   border: 1px solid var(--color-border-default);
@@ -405,18 +386,15 @@ main .gsc-left-header .color-text-secondary,
   font-size: 13px;
   transition: all 0.2s ease;
 }
-
 .gsc-pagination-button:hover {
   background-color: var(--color-canvas-subtle);
   border-color: var(--color-btn-hover-border);
 }
-
 .gsc-pagination-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-/* 分页加载器 */
 .pagination-loader-container {
   background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
 }
