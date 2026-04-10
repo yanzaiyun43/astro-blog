@@ -155,25 +155,30 @@ main .gsc-left-header .color-text-secondary,
 }
 
 /* Markdown 提示区域 - 完全融合 */
-.gsc-comment-box-textarea-extras {
+.gsc-comment-box .gsc-comment-box-textarea-extras,
+.gsc-comment-box-write .gsc-comment-box-textarea-extras,
+.form-control.input-contrast.gsc-comment-box-textarea-extras {
   background-color: transparent !important;
   border: none !important;
+  border-top: none !important;
   padding: 0 12px 8px 12px !important;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: -4px;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: flex-end !important;
 }
 
-.gsc-comment-box-markdown-hint {
+.gsc-comment-box .gsc-comment-box-markdown-hint {
   color: var(--color-fg-subtle) !important;
-  font-size: 12px;
-  transition: color 0.2s ease;
-  opacity: 0.7;
+  font-size: 12px !important;
+  transition: color 0.2s ease !important;
+  opacity: 0.6 !important;
+  margin: 0 !important;
+  padding: 4px !important;
 }
 
-.gsc-comment-box-markdown-hint:hover {
+.gsc-comment-box .gsc-comment-box-markdown-hint:hover {
   color: var(--color-accent-fg) !important;
-  opacity: 1;
+  opacity: 1 !important;
 }
 
 /* 底部工具栏 */
