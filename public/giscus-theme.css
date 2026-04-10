@@ -1,5 +1,5 @@
 main {
-  /* 语法高亮颜色 - 适配博客配色 */
+  /* 语法高亮颜色*/
   --color-prettylights-syntax-comment: #78716c;
   --color-prettylights-syntax-constant: #0ea5e9;
   --color-prettylights-syntax-entity: #8b5cf6;
