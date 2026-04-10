@@ -6,16 +6,18 @@ interface Props {
 
 const { slug, title } = Astro.props;
 
-// Giscus 配置 - 需要替换为你的仓库信息
+// Giscus 配置
 const GISCUS_CONFIG = {
-  repo: 'yanzaiyun43/astro-blog',        // 修改：你的 GitHub 仓库
-  repoId: 'R_kgDOR645ow',              // 修改：你的仓库 ID
-  category: 'Announcements',             // 讨论分类
-  categoryId: 'DIC_kwDOR645o84C6KD_',        // 修改：分类 ID
+  repo: 'yanzaiyun43/astro-blog',
+  repoId: 'R_kgDOR-x7jQ',
+  category: 'Announcements',
+  categoryId: 'DIC_kwDOR-x7jc4C6hFn',
   mapping: 'pathname',
+  strict: '0',
   reactionsEnabled: '1',
   emitMetadata: '0',
   inputPosition: 'bottom',
+  theme: 'fro',
   lang: 'zh-CN',
 };
 ---
@@ -35,7 +37,7 @@ const GISCUS_CONFIG = {
       data-reactions-enabled={GISCUS_CONFIG.reactionsEnabled}
       data-emit-metadata={GISCUS_CONFIG.emitMetadata}
       data-input-position={GISCUS_CONFIG.inputPosition}
-      data-theme="light"
+      data-theme={GISCUS_CONFIG.theme}
       data-lang={GISCUS_CONFIG.lang}
       data-loading="lazy"
       crossorigin="anonymous"
