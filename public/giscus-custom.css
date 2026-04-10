@@ -214,15 +214,21 @@ main {
   box-shadow: none !important;
   background: transparent !important;
   border: none !important;
+  text-decoration: none !important;
 }
 
 /* 评论者头像图片 - 去除白色椭圆背景 */
 .gsc-comment-author-avatar img,
-.gsc-comment-author-avatar .rounded-full {
+.gsc-comment-author-avatar .rounded-full,
+.gsc-comment-author img,
+.gsc-comment-author .rounded-full,
+.gsc-comment-author-avatar [class*="rounded"] {
   border-radius: 50% !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
   background: transparent !important;
+  background-color: transparent !important;
   border: none !important;
+  outline: none !important;
 }
 
 /* gsc-comment-timestamp - 评论时间戳 */
