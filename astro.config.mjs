@@ -2,9 +2,12 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import alpinejs from '@astrojs/alpinejs';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import { SITE } from './src/consts.ts';
 
 export default defineConfig({
-  site: 'https://ailmel.top',
+  site: SITE.url,
   output: 'static',
   integrations: [
     tailwind({
@@ -33,8 +36,8 @@ export default defineConfig({
         }
       ]
     },
-    remarkPlugins: [],
-    rehypePlugins: [],
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
   },
   image: {
     service: {
