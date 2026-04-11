@@ -190,7 +190,7 @@ const breadcrumbSchema = {
                   <span>订阅RSS</span>
                 </a>
                 <button 
-                  @click="navigator.clipboard.writeText(window.location.href).then(() => { copied = true; setTimeout(() => copied = false, 2000); })"
+                  @click="navigator.clipboard.writeText(window.location.origin + window.location.pathname).then(() => { copied = true; setTimeout(() => copied = false, 2000); })"
                   class="flex items-center gap-1.5 px-3 py-1.5 text-sm text-[var(--color-text-subtle)] hover:text-[var(--color-primary)] transition-colors duration-200 rounded-md hover:bg-[var(--color-surface-elevated)] border border-[var(--color-border)] hover:border-[var(--color-primary)]"
                   title="复制链接">
                   <svg x-show="!copied" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
