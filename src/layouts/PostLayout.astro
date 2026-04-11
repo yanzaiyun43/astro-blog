@@ -113,6 +113,49 @@ const breadcrumbSchema = {
     <div class="container-luxury py-12 md:py-16">
       <div class="flex gap-12">
         <div class="flex-1 max-w-3xl mx-auto">
+          <!-- 手机版目录 -->
+          {hasToc && (
+            <div class="lg:hidden mb-8" x-data="{ open: false }">
+              <button 
+                @click="open = !open"
+                class="w-full flex items-center justify-between px-4 py-3 border border-[var(--color-border-subtle)] rounded-gentle bg-[var(--color-surface-elevated)] hover:border-[var(--color-primary)] hover:bg-[var(--color-surface)] transition-all duration-200">
+                <span class="flex items-center gap-2 text-sm font-medium text-[var(--color-text-muted)]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[var(--color-text-subtle)]"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+                  目录
+                </span>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="16" 
+                  height="16" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  stroke-width="1.5" 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round"
+                  :class="{ 'rotate-180': open }"
+                  class="transition-transform duration-200 text-[var(--color-text-subtle)]">
+                  <path d="m6 9 6 6 6-6"/>
+                </svg>
+              </button>
+              <div 
+                x-show="open" 
+                x-collapse
+                class="mt-2 p-4 border border-[var(--color-border-subtle)] rounded-gentle bg-[var(--color-surface-elevated)] max-h-64 overflow-y-auto scrollbar-thin">
+                <nav class="space-y-2">
+                  {headings.filter(h => h.depth <= 3).map(heading => (
+                    <a 
+                      href={`#${heading.slug}`}
+                      @click="open = false"
+                      class={`block text-sm transition-colors duration-200 ${heading.depth === 2 ? 'text-[var(--color-text-muted)] hover:text-[var(--color-primary)]' : 'text-[var(--color-text-subtle)] hover:text-[var(--color-primary)] pl-4'}`}>
+                      {heading.text}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </div>
+          )}
+          
           <div class="prose prose-lg prose-custom mx-auto">
             <slot />
           </div>
@@ -168,7 +211,7 @@ const breadcrumbSchema = {
         <!-- TOC -->
         {hasToc && (
           <aside class="hidden lg:block w-64 shrink-0">
-            <div class="sticky top-24">
+            <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-thin">
               <h3 class="text-xs font-medium uppercase tracking-wider text-[var(--color-text-subtle)] mb-4">目录</h3>
               <nav class="space-y-1 border-l border-[var(--color-border)]">
                 {headings.filter(h => h.depth <= 3).map(heading => (
