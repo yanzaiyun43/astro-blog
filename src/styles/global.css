@@ -485,7 +485,14 @@ img {
 
 /* 平滑锚点滚动 */
 [id] {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 6rem;
+}
+
+/* 移动端锚点偏移修复 */
+@media (max-width: 1024px) {
+  [id] {
+    scroll-margin-top: 5rem;
+  }
 }
 
 /* 目录滚动条样式 */
