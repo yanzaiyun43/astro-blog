@@ -93,7 +93,7 @@ echo json_encode($response);
 ```json
 {
   "compress": false,
-  "downloadUrlRule": "$.data@js:if (result == '') \n '' \n else \n 'https://你的域名' + result",
+  "downloadUrlRule": "$.data@js:if (result == '') ''  else  'https://你的域名' + result",
   "summary": "自建永久直链",
   "uploadUrl": "https://你的域名/upload.php,{\"method\":\"POST\",\"body\": {\"file\": \"fileRequest\"},\"type\": \"multipart/form-data\"}"
 }
