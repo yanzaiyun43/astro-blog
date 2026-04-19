@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "submit:indexnow": "node scripts/submit-indexnow.mjs",
+    "build:submit": "astro build && node scripts/submit-indexnow.mjs"
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.4.0",
@@ -15,6 +17,7 @@
     "@astrojs/tailwind": "^6.0.0",
     "alpinejs": "^3.14.8",
     "astro": "^5.0.0",
+    "gray-matter": "^4.0.3",
     "katex": "^0.16.45",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",

@@ -224,6 +224,19 @@ const GISCUS_CONFIG = {
 };
 ```
 
+### IndexNow 推送
+
+项目已集成 IndexNow，用于主动推送文章到 Bing 搜索引擎。
+
+1. 在 [Bing Webmaster Tools](https://www.bing.com/webmasters) 获取 API Key
+2. 更新 `scripts/submit-indexnow.mjs` 中的 `INDEXNOW_KEY`
+3. 创建验证文件 `public/你的key.txt`，内容为 Key
+4. 运行推送：
+
+```bash
+npm run submit:indexnow
+```
+
 ## 许可证
 
 [MIT License](LICENSE)
