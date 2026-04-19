@@ -1,7 +1,7 @@
 ---
 title: '给博客加上 IndexNow，让搜索引擎秒收录'
 description: '分享如何为 Astro 博客添加 IndexNow 功能，让 Bing 等搜索引擎更快发现你的新文章。'
-publishedAt: 2026-04-11
+publishedAt: 2026-04-19
 category: '技术分享'
 tags: ['SEO', 'IndexNow', 'Bing', 'Astro']
 ---
