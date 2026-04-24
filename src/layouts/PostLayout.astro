@@ -168,10 +168,10 @@ const breadcrumbSchema = {
                   <img src={post.author.avatar.src} alt={post.author.name} class="w-10 h-10 rounded-full object-cover border border-[var(--color-border)]" />
                 )}
                 <div>
-                  <p class="text-sm font-medium text-[var(--color-text)]">{post.author.name}</p>
+                  <p class="text-sm font-medium text-[var(--color-text)]">{SITE.name}</p>
                   <!-- 版权声明 -->
                   <p class="text-xs text-[var(--color-text-subtle)] mt-0.5">
-                    采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer" class="text-[var(--color-primary)] hover:underline">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处
+                    本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer" class="text-[var(--color-primary)] hover:underline">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处
                   </p>
                   <p class="text-xs text-[var(--color-text-subtle)] opacity-70">
                     {post.updatedAt ? `更新于 ${formatDate(post.updatedAt)}` : `发布于 ${formatDate(post.publishedAt)}`}
