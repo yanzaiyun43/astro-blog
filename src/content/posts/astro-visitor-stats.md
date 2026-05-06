@@ -33,7 +33,7 @@ featured: false
 
 ```php
 <?php
-// 允许跨域（上线后替换为你的域名，如 https://你的博客域名）
+// 允许跨域（替换为你的域名，如 https://你的博客域名）
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Headers: Content-Type");
