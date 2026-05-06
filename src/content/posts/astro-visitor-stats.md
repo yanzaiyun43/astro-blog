@@ -43,7 +43,7 @@ header('Content-Type: application/json; charset=utf-8');
 $db_host = 'localhost';
 $db_name = 'astro_visits'; // 数据库名，可自定义
 $db_user = 'root';        // 数据库用户名
-$db_pass = '你的数据库密码'; // 数据库密码
+$db_pass = '你的数据库密码'; 
 
 // 自动初始化数据库和表
 function initDB($pdo) {
