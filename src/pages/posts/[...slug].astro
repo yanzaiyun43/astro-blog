@@ -53,6 +53,8 @@ const currentIndex = sorted.findIndex(p => p.id === post.id);
 const prevPost = currentIndex < sorted.length - 1 ? sorted[currentIndex + 1] : null;
 const nextPost = currentIndex > 0 ? sorted[currentIndex - 1] : null;
 
+const getPostSlug = (p: typeof post) => p.data.slug || p.id.replace(/\.mdx?$/, '').replace(/\/index$/, '');
+
 const blogPost = mapToBlogPost(post, author);
 ---
 
@@ -65,14 +67,14 @@ const blogPost = mapToBlogPost(post, author);
   <div slot="article-footer" class="mt-12 pt-8 border-t border-[var(--color-border)]">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       {prevPost ? (
-        <a href={`/posts/${prevPost.id.replace(/\.mdx?$/, '').replace(/\/index$/, '')}/`} class="group p-4 border border-[var(--color-border)] rounded-gentle hover:border-[var(--color-primary)] transition-all duration-300">
+        <a href={`/posts/${getPostSlug(prevPost)}/`} class="group p-4 border border-[var(--color-border)] rounded-gentle hover:border-[var(--color-primary)] transition-all duration-300">
           <span class="text-xs text-[var(--color-text-subtle)] mb-1 block">上一篇</span>
           <span class="text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors duration-300 line-clamp-2 font-medium">{prevPost.data.title}</span>
         </a>
       ) : <div />}
       
       {nextPost ? (
-        <a href={`/posts/${nextPost.id.replace(/\.mdx?$/, '').replace(/\/index$/, '')}/`} class="group p-4 border border-[var(--color-border)] rounded-gentle hover:border-[var(--color-primary)] transition-all duration-300 text-right">
+        <a href={`/posts/${getPostSlug(nextPost)}/`} class="group p-4 border border-[var(--color-border)] rounded-gentle hover:border-[var(--color-primary)] transition-all duration-300 text-right">
           <span class="text-xs text-[var(--color-text-subtle)] mb-1 block">下一篇</span>
           <span class="text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors duration-300 line-clamp-2 font-medium">{nextPost.data.title}</span>
         </a>

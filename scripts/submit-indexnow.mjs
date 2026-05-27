@@ -21,7 +21,8 @@ async function getAllPosts() {
         // 跳过草稿
         if (data.draft) continue;
         
-        const slug = basename(file, extname(file)).replace(/\/index$/, '');
+        const fileSlug = basename(file, extname(file)).replace(/\/index$/, '');
+        const slug = data.slug || fileSlug;
         urls.push(`${SITE_URL}/posts/${slug}/`);
       }
     }

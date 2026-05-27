@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
@@ -8,44 +9,62 @@ import Pagination from '../../components/Pagination.astro';
 import { filterPublished, sortPosts, mapToBlogPost, getCategories, generateSlug } from '../../utils/content';
 import { SITE } from '../../consts';
 
-export async function getStaticPaths() {
+export const getStaticPaths = (async () => {
+  const postsPerPage = 9;
   const posts = await getCollection('posts');
   const published = filterPublished(posts);
   const categories = getCategories(published);
-  
-  // 过滤掉 slug 为空的分类
   const validCategories = categories.filter(cat => cat.slug && cat.slug.trim() !== '');
-  
-  if (validCategories.length === 0) {
-    // 如果没有有效分类，返回一个占位路径防止构建失败
-    return [];
+
+  const paths = [];
+
+  for (const category of validCategories) {
+    const categoryPosts = published.filter(post =>
+      generateSlug(post.data.category) === category.slug
+    );
+    const sorted = sortPosts(categoryPosts);
+    const totalPages = Math.ceil(sorted.length / postsPerPage);
+
+    // 第 1 页: /categories/xxx
+    paths.push({
+      params: { slug: category.slug },
+      props: { category, postsPerPage, currentPage: 1, totalPages, totalPosts: sorted.length },
+    });
+
+    // 第 2+ 页: /categories/xxx/2, /categories/xxx/3 ...
+    for (let p = 2; p <= totalPages; p++) {
+      paths.push({
+        params: { slug: `${category.slug}/${p}` },
+        props: { category, postsPerPage, currentPage: p, totalPages, totalPosts: sorted.length },
+      });
+    }
   }
-  
-  return validCategories.map(cat => ({
-    params: { slug: cat.slug },
-    props: { category: cat, allPosts: published },
-  }));
-}
 
-const { category, allPosts } = Astro.props;
-const categoryPosts = allPosts.filter(post => generateSlug(post.data.category) === category.slug);
+  return paths;
+}) satisfies GetStaticPaths;
+
+const { category, postsPerPage, currentPage, totalPages, totalPosts } = Astro.props;
+
+const posts = await getCollection('posts');
+const published = filterPublished(posts);
+const categoryPosts = published.filter(post =>
+  generateSlug(post.data.category) === category.slug
+);
 const sorted = sortPosts(categoryPosts);
-
-const postsPerPage = 9;
-const totalPages = Math.ceil(sorted.length / postsPerPage);
-const currentPage = 1;
-const displayPosts = sorted.slice(0, postsPerPage);
+const displayPosts = sorted.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
 
 const author = {
   id: '1',
   name: SITE.defaultAuthor,
   slug: 'author',
 };
+
+const baseUrl = `/categories/${category.slug}`;
 ---
 
-<BaseLayout title={`分类：${category.name}`} description={`${category.name} 分类下的所有文章`} class="pt-16">
+<BaseLayout title={currentPage === 1 ? `分类：${category.name}` : `分类：${category.name} - 第 ${currentPage} 页`} description={`${category.name} 分类下的所有文章`} class="pt-16">
   <Navbar slot="header" />
-  
+
   <div class="container-luxury section-padding pt-24">
     <!-- Category Header -->
     <div class="text-center mb-12 pb-8 border-b border-[var(--color-border)]">
@@ -54,9 +73,9 @@ const author = {
         <span>分类</span>
       </div>
       <h1 class="font-serif text-3xl md:text-4xl font-medium mb-3 text-[var(--color-text)]">{category.name}</h1>
-      <p class="text-[var(--color-text-muted)]">该分类下共有 {category.postCount} 篇文章</p>
+      <p class="text-[var(--color-text-muted)]">该分类下共有 {totalPosts} 篇文章</p>
     </div>
-    
+
     <!-- Posts Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {displayPosts.map((post, index) => (
@@ -65,18 +84,18 @@ const author = {
         </div>
       ))}
     </div>
-    
+
     {totalPages > 1 && (
-      <Pagination 
-        currentPage={currentPage} 
-        totalPages={totalPages} 
-        baseUrl={`/categories/${category.slug}`} 
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        baseUrl={baseUrl}
       />
     )}
-    
+
     <!-- Back to All -->
     <div class="mt-12 text-center">
-      <a 
+      <a
         href="/posts"
         class="inline-flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-300">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -84,6 +103,6 @@ const author = {
       </a>
     </div>
   </div>
-  
+
   <Footer slot="footer" />
 </BaseLayout>

@@ -20,13 +20,7 @@ export interface Author {
   id: string;
   name: string;
   slug: string;
-  bio?: string;
   avatar?: ImageMetadata;
-  social?: {
-    twitter?: string;
-    github?: string;
-    website?: string;
-  };
 }
 
 export interface Category {

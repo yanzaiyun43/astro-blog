@@ -16,7 +16,7 @@ export async function GET(context) {
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.publishedAt,
-      link: `/posts/${post.id.replace(/\.mdx?$/, '').replace(/\/index$/, '')}/`,
+      link: `/posts/${post.data.slug || post.id.replace(/\.mdx?$/, '').replace(/\/index$/, '')}/`,
       categories: [post.data.category, ...post.data.tags],
     })),
     customData: `<language>${SITE.language}</language>`,

@@ -7,7 +7,7 @@ const published = filterPublished(posts);
 const sorted = sortPosts(published);
 
 const searchData = sorted.map(p => ({
-  slug: p.id.replace(/\.mdx?$/, '').replace(/\/index$/, ''),
+  slug: p.data.slug || p.id.replace(/\.mdx?$/, '').replace(/\/index$/, ''),
   title: p.data.title,
   description: p.data.description,
   category: p.data.category,
