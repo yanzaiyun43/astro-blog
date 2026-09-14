@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 本地字体：One UI Sans（可变字体，仅覆盖英文，中文回退系统字体） */
+@font-face {
+  font-family: 'One UI Sans';
+  src: url('/fonts/sans.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ==========================================
    CSS 变量 - 极简轻奢配色方案
    ========================================== */
@@ -30,8 +39,8 @@
   --color-border-hover: #d6d3d1;
 
   /* 字体 */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-serif: 'Playfair Display', 'Noto Serif SC', Georgia, serif;
+  --font-sans: 'One UI Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-serif: 'One UI Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   /* 间距 */
@@ -65,7 +74,6 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 body {

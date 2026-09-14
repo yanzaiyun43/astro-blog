@@ -89,7 +89,4 @@ const ogImage = image ? new URL(image, SITE.url).toString() : new URL('/og-image
 <meta name="generator" content={Astro.generator} />
 
 <!-- Preconnect -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+<!-- 字体已本地化（/fonts/sans.woff2），无需外部字体预连接 -->
