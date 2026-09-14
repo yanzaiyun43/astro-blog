@@ -91,4 +91,4 @@ astro-blog/
 
 ## 许可
 
-仅供学习交流使用。
+[MIT](LICENSE) © yanzaiyun43
