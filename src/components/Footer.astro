@@ -45,7 +45,7 @@ const socialLinks = [
     
     <!-- 底部版权栏 -->
     <div class="mt-8 pt-8 border-t border-[var(--color-border-subtle)] flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[var(--color-text-subtle)]">
-      <p class="flex items-center gap-2">
+      <p class="flex flex-wrap items-center justify-center gap-2 text-center md:justify-start">
         <span>&copy; {currentYear} {SITE.name}. 保留所有权利。</span>
         <span class="hidden md:inline text-[var(--color-border)]">|</span>
         <span class="flex items-center gap-1" title="从 2025-12-31 开始运行">
@@ -53,11 +53,7 @@ const socialLinks = [
           <span id="run-days">加载中...</span>
         </span>
       </p>
-      <p class="flex items-center gap-4">
-        <span class="flex items-center gap-1">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          <span id="visitor-count">加载中...</span>
-        </span>
+      <p class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
         <span>主题制作 by <a href="https://github.com/yanzaiyun43/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-primary)] transition-colors duration-200">{SITE.defaultAuthor}</a></span>
       </p>
     </div>
@@ -73,39 +69,5 @@ const socialLinks = [
       const runDays = Math.floor((new Date().getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
       runDaysEl.textContent = '本站稳定运行 ' + runDays + ' 天';
     }
-  });
-</script>
-
-<!-- 访客统计 -->
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    const countEl = document.getElementById('visitor-count');
-    if (!countEl) return;
-
-    // 读取本地存储的访客标识和创建时间
-    let visitorId = localStorage.getItem('visitorId');
-    let createTime = localStorage.getItem('visitorId_create_time');
-    const now = Date.now();
-    const thirtyDays = 30 * 24 * 60 * 60 * 1000; // 30 天毫秒数
-
-    // 判断是否需要更新访客标识
-    let needNew = !visitorId || !createTime || (now - parseInt(createTime, 10)) > thirtyDays;
-    if (needNew) {
-      visitorId = Math.random().toString(36).slice(2);
-      createTime = now.toString();
-      localStorage.setItem('visitorId', visitorId);
-      localStorage.setItem('visitorId_create_time', createTime);
-    }
-
-    // 请求统计接口
-    fetch(`https://ailmel.dpdns.org/visit.php?api=1&visitorId=${visitorId}`)
-      .then(res => res.json())
-      .then(data => {
-        countEl.textContent = '本站已累计访问 ' + data.total + ' 位访客' || '获取失败';
-      })
-      .catch(err => {
-        countEl.textContent = '获取失败';
-        console.error('统计接口错误：', err);
-      });
   });
 </script>
